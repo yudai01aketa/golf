@@ -10,6 +10,7 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'faker'
+gem 'jquery-rails', '4.3.1'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
