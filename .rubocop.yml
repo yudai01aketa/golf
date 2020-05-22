@@ -11,6 +11,7 @@ AllCops:
     - 'db/**/*'
     - 'vendor/**/**/*'
     - 'spec/*'
+    - app/helpers/sessions_helper.rb
 
 Style/TrailingCommaInHashLiteral:
   Enabled: false
