@@ -20,11 +20,14 @@ RSpec.describe "ログイン", type: :request do
     delete logout_path
     expect(is_logged_in?).not_to be_truthy
     redirect_to root_url
+    delete logout_path
+    follow_redirect!
   end
 
   it "無効なユーザーでログイン" do
     get login_path
-    post login_path, params: { session: { email: "xxx@example.com", password: user.password } }
+    post login_path, params: { session: { email: "xxx@example.com",
+                                          password: user.password } }
     expect(is_logged_in?).not_to be_truthy
   end
 end
