@@ -1,4 +1,15 @@
 <% provide(:title, "プロフィール") %>
+
+<% i = 1 %>
+<% @items.each do |item| %>
+  <tr>
+    <td><%= i %></td><% i += 1 %>
+    <td><img src="<%= item['smallImageUrls'][0] %>"></td>
+    <td><a href="<%= item['itemUrl'] %>" target="_blank"><%= item['itemName'] %></a></td>
+    <td><%= item['itemPrice'] %>円</td>
+  </tr>
+<% end %>
+
 <div class="container">
   <h3 class="title-profile">プロフィール</h3>
   <div class="row">

@@ -18,6 +18,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
+# 楽天API取得
+gem 'rakuten_web_service'
+
 
 group :development, :test do
   gem 'sqlite3'
