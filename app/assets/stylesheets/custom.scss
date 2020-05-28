@@ -1,14 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-// ミックスイン
+// ミックスイン//
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
 }
 
-// 全ページ共通
+// 全ページ共通//
 body {
   padding-top: 60px;
 }
@@ -28,7 +28,7 @@ textarea {
   }
 }
 
-// テキストの見栄え
+// テキストの見栄え //
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
@@ -54,7 +54,7 @@ p {
   line-height: 1.7em;
 }
 
-// ヘッダー
+// ヘッダー //
 .navbar ul{
   margin-top: 12px;
   margin-bottom: 12px;
@@ -68,7 +68,7 @@ p {
   }
 }
 
-// フッター
+// フッター //
 footer {
   margin-top: 45px;
   padding-top: 5px;
@@ -79,7 +79,7 @@ footer {
   }
 }
 
-// フォーム
+// フォーム //
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
@@ -116,4 +116,40 @@ input {
  #session_remember_me {
  width: auto;
  margin-left: 0;
+}
+
+//// プロフィールページ ////
+.title-profile {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.user-picture img {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.user-picture-box {
+  margin-top: 0.5em;
+  margin-left: 1em;
+}
+
+.show-user-name {
+  display: inline-block;
+}
+
+.account-edit {
+  margin-top: 20px;
+}
+
+//// ユーザー一覧ページ ////
+.users {
+ list-style: none;
+ margin: 0;
+ li {
+   overflow: auto;
+   padding: 10px 0;
+   border-bottom: 1px solid $gray-lighter;
+ }
 }
