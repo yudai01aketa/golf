@@ -15,6 +15,22 @@ RSpec.describe "StaticPages", type: :system do
         expect(page).to have_title full_title
       end
     end
+
+    context "コースフィード", js: true do
+      let!(:user) { create(:user) }
+      let!(:course) { create(:course, user: user) }
+
+      it "コースのぺージネーションが表示されること" do
+        login_for_system(user)
+        create_list(:course, 6, user: user)
+        visit root_path
+        expect(page).to have_content "みんなのコース (#{user.courses.count})"
+        expect(page).to have_css "div.pagination"
+        Course.take(5).each do |c|
+          expect(page).to have_link c.name
+        end
+      end
+    end
   end
 
   describe "ヘルプページ" do

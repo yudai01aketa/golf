@@ -1,29 +1,4 @@
-<<<<<<< HEAD
-# README
+後で修正かける箇所
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-=======
-# golf
-オリジナルアプリ
->>>>>>> origin/master
+spec/factories/courses.rb:3
+楽天Goraのゴルフコース名に

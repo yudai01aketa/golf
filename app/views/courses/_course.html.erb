@@ -1,0 +1,15 @@
+<li id="course-<%= course.id %>">
+  <%= link_to gravatar_for(course.user, size: 50), course.user %>
+  <span class="name"><%= link_to course.name, course_path(course) %></span>
+  <span class="description"><%= course.description %></span><br>
+  <span class="score">スコア：<%= course.score %></span>
+  <span class="recommend">人気度：<%= course.recommend %></span><br>
+  <span class="reference"><%= link_to "コース詳細", course.reference, target: :_blank %></span>
+  <span class="timestamp">
+    <%= time_ago_in_words(course.created_at) %>前に投稿
+  </span>
+  <% if current_user.admin? || (current_user == course.user) %>
+    <%= link_to "削除", course_path(course), method: :delete,
+                       data: { confirm: "本当に削除しますか？" } %>
+  <% end %>
+</li>
