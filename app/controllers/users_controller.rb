@@ -6,9 +6,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @items = RakutenWebService::Ichiba::Item.search(:keyword => 'Ruby', :genreId => ’200162’)
-
     @user = User.find(params[:id])
+    @courses = @user.courses.paginate(page: params[:page], per_page: 5)
   end
 
   def new

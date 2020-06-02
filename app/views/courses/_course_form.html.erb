@@ -1,0 +1,32 @@
+<%= form_with model: @course, local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class = 'form-group'>
+    <%= f.label :name %>　<span class="input-need">※必須</span>
+    <%= f.text_field :name, class: 'form-control', id: 'course_name' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :description %>　<span class="input-unneed">※任意</span>
+    <%= f.text_field :description, size: "60x4", class: 'form-control', id: 'course_description' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :tips %>　<span class="input-unneed">※任意</span>
+    <%= f.text_field :tips, size: "30x4", class: 'form-control', id: 'course_tips' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :reference %>　<span class="input-unneed">※任意</span>
+    <%= f.text_field :reference, class: 'form-control', id: 'course_reference' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :score %>　<span class="input-unneed">※任意</span>
+    <%= f.text_field :score, class: 'form-control', id: 'course_score' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :recommend %> [1~5]　<span class="input-unneed">※任意</span>
+    <%= f.text_field :recommend, class: 'form-control', id: 'course_recommend' %>
+  </div>
+  <div class = 'form-group'>
+    <%= f.label :memo %>　<span class="input-unneed">※任意</span>
+    <%= f.text_field :course_memo, class: 'form-control', id: 'course_memo' %>
+  </div>
+  <%= f.submit nil, class: 'btn btn-primary' %>
+<% end %>

@@ -12,6 +12,7 @@ AllCops:
     - 'vendor/**/**/*'
     - 'spec/*'
     - app/helpers/sessions_helper.rb
+    - app/models/course.rb
 
 Style/TrailingCommaInHashLiteral:
   Enabled: false

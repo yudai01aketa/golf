@@ -1,15 +1,5 @@
 <% provide(:title, "プロフィール") %>
 
-<% i = 1 %>
-<% @items.each do |item| %>
-  <tr>
-    <td><%= i %></td><% i += 1 %>
-    <td><img src="<%= item['smallImageUrls'][0] %>"></td>
-    <td><a href="<%= item['itemUrl'] %>" target="_blank"><%= item['itemName'] %></a></td>
-    <td><%= item['itemPrice'] %>円</td>
-  </tr>
-<% end %>
-
 <div class="container">
   <h3 class="title-profile">プロフィール</h3>
   <div class="row">
@@ -26,6 +16,18 @@
       <% if current_user == @user %>
         <div class="account-edit"><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
       <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col-md-9">
+        <% if @user.courses.any? %>
+          <h3>コース (<%= @user.courses.count %>)</h3>
+          <ol class="courses">
+            <%= render @courses %>
+          </ol>
+          <%= will_paginate @courses %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

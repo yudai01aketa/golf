@@ -21,7 +21,6 @@ gem 'bootstrap-will_paginate', '1.0.0'
 # 楽天API取得
 gem 'rakuten_web_service'
 
-
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
