@@ -3,6 +3,8 @@ require "rails_helper"
 RSpec.describe "コース登録", type: :request do
   let!(:user) { create(:user) }
   let!(:course) { create(:course, user: user) }
+  let(:picture_path) { File.join(Rails.root, 'spec/fixtures/test_course.jpg') }
+  let(:picture) { Rack::Test::UploadedFile.new(picture_path) }
 
   context "ログインしているユーザーの場合" do
     before do
@@ -37,7 +39,8 @@ RSpec.describe "コース登録", type: :request do
             tips: "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています",
             reference: "https://cookpad.com/recipe/2798655",
             score: 100,
-            recommend: 5
+            recommend: 5,
+            picture: picture
           }
         }
       }.to change(Course, :count).by(1)
@@ -54,7 +57,8 @@ RSpec.describe "コース登録", type: :request do
             tips: "ピリッと辛めに味付けするのがオススメ",
             reference: "https://cookpad.com/recipe/2798655",
             score: 100,
-            recommend: 5
+            recommend: 5,
+            picture: picture
           }
         }
       }.not_to change(Course, :count)

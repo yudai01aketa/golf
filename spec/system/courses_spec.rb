@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Courses", type: :system do
   let!(:user) { create(:user) }
-  let!(:course) { create(:course, user: user) }
+  let!(:course) { create(:course, :picture, user: user) }
 
   describe "コース登録ページ" do
     before do
@@ -38,6 +38,7 @@ RSpec.describe "Courses", type: :system do
         fill_in "コースの詳細URL", with: "https://cookpad.com/recipe/2798655"
         fill_in "スコア", with: 100
         fill_in "オススメ度", with: 5
+        attach_file "course[picture]", "#{Rails.root}/spec/fixtures/test_course.jpg"
         click_button "登録する"
         expect(page).to have_content "コースが登録されました！"
       end
@@ -119,6 +120,7 @@ RSpec.describe "Courses", type: :system do
         fill_in "コースの詳細URL", with: "henshu-https://cookpad.com/recipe/2798655"
         fill_in "スコア", with: 100
         fill_in "オススメ度", with: 4
+        attach_file "course[picture]", "#{Rails.root}/spec/fixtures/test_course2.jpg"
         click_button "更新する"
         expect(page).to have_content "コース情報が更新されました！"
         expect(course.reload.name).to eq "編集：大神戸"
@@ -127,6 +129,7 @@ RSpec.describe "Courses", type: :system do
         expect(course.reload.reference).to eq "henshu-https://cookpad.com/recipe/2798655"
         expect(course.reload.score).to eq 100
         expect(course.reload.recommend).to eq 4
+        expect(course.reload.picture.url).to include "test_course2.jpg"
       end
 
       it "無効な更新" do

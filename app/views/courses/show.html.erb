@@ -1,28 +1,36 @@
 <% provide(:title, "#{@course.name}") %>
 <div class="container">
   <div class="row">
-    <h2 class="course-name"><%= @course.name %></h2>
-    <div class="change-course">
-      <% if current_user == @course.user %>
-        <%= link_to "編集", edit_course_path(@course), class: 'edit-course' %>　
-      <% end %>
-      <% if current_user.admin? || (current_user == @course.user) %>
-        <%= link_to "削除", course_path(@course), method: :delete, class: 'delete-course',
-                                      data: { confirm: "本当に削除しますか？" } %>
-      <% end %>
+    <div class="col-md-4">
+      <span class="picture">
+        <%= link_to((image_tag @course.picture.thumb400.url), course_path(@course.id),
+         class: 'course-picture') if @course.picture.url.present? %>
+      </span>
     </div>
-    <h4><%= @course.description %></h4>
-    <h4 class="course-reference">コース詳細：<%= link_to "#{@course.reference}", @course.reference, target: "_blank" %></h4>
-    <div class="tips">
-      <h5 class="title-tips">コツ・ポイント</h5>
-      <h5><%= @course.tips %></h5>
-    </div>
-    <div class="show-course-other-info">
-      <div class="course-info">
-        <h5>スコア：</h5><h4><%= @course.score %></h4>
+    <div class="col-md-8">
+      <h2 class="course-name"><%= @course.name %></h2>
+      <div class="change-course">
+        <% if current_user == @course.user %>
+          <%= link_to "編集", edit_course_path(@course), class: 'edit-course' %>　
+        <% end %>
+        <% if current_user.admin? || (current_user == @course.user) %>
+          <%= link_to "削除", course_path(@course), method: :delete, class: 'delete-course',
+                                        data: { confirm: "本当に削除しますか？" } %>
+        <% end %>
       </div>
-      <div class="course-info">
-        <h5>人気度：</h5><h4><%= @course.recommend %></h4>
+      <h4><%= @course.description %></h4>
+      <h4 class="course-reference">コース詳細：<%= link_to "#{@course.reference}", @course.reference, target: "_blank" %></h4>
+      <div class="tips">
+        <h5 class="title-tips">コツ・ポイント</h5>
+        <h5><%= @course.tips %></h5>
+      </div>
+      <div class="show-course-other-info">
+        <div class="course-info">
+          <h5>スコア：</h5><h4><%= @course.score %></h4>
+        </div>
+        <div class="course-info">
+          <h5>人気度：</h5><h4><%= @course.recommend %></h4>
+        </div>
       </div>
     </div>
   </div>
