@@ -4,6 +4,8 @@ RSpec.describe "コース編集", type: :request do
   let!(:user) { create(:user) }
   let!(:other_user) { create(:user) }
   let!(:course) { create(:course, user: user) }
+  let(:picture2_path) { File.join(Rails.root, 'spec/fixtures/test_course2.jpg') }
+  let(:picture2) { Rack::Test::UploadedFile.new(picture2_path) }
 
   context "認可されたユーザーの場合" do
     it "レスポンスが正常に表示されること" do
@@ -17,7 +19,8 @@ RSpec.describe "コース編集", type: :request do
           tips: "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています",
           reference: "https://cookpad.com/recipe/2798655",
           score: 100,
-          recommend: 5
+          recommend: 5,
+          picture: picture2
         }
       }
       redirect_to course
@@ -40,7 +43,8 @@ RSpec.describe "コース編集", type: :request do
           tips: "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています",
           reference: "https://cookpad.com/recipe/2798655",
           score: 100,
-          recommend: 5
+          recommend: 5,
+          picture: picture2
         }
       }
       expect(response).to have_http_status "302"
@@ -62,7 +66,8 @@ RSpec.describe "コース編集", type: :request do
           tips: "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています",
           reference: "https://cookpad.com/recipe/2798655",
           score: 100,
-          recommend: 4
+          recommend: 4,
+          picture: picture2
         }
       }
       expect(response).to have_http_status "302"

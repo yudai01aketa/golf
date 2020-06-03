@@ -270,10 +270,17 @@ h2.course-name {
 }
 
 //// コース削除 ////
-.change-dish {
+.change-course {
   display: inline-block;
 }
 
 .edit-dish .delete-dish {
   font-size: 15px;
+}
+
+/// 画像のサイズ ///
+.course-picture img {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
 }

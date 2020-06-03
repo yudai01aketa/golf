@@ -1,5 +1,6 @@
 require 'capybara/rspec'
 require 'spec_helper'
+require 'carrierwave/test/matchers'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 ENV['RAILS_ENV'] ||= 'test'

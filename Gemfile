@@ -20,6 +20,9 @@ gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
 # 楽天API取得
 gem 'rakuten_web_service'
+# 画像
+gem 'carrierwave', '1.2.2'
+gem "mini_magick", '>= 4.9.4'
 
 group :development, :test do
   gem 'sqlite3'
@@ -50,4 +53,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do # 本番環境
   gem 'pg' # PostgreSQL
+  gem 'fog', '1.42'
 end
