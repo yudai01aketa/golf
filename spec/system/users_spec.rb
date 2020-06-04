@@ -4,6 +4,8 @@ RSpec.describe "Users", type: :system do
   let!(:user) { create(:user) }
   let!(:admin_user) { create(:user, :admin) }
   let!(:other_user) { create(:user) }
+  let!(:course) { create(:course, user: user) }
+  let!(:other_course) { create(:course, user: other_user) }
 
   describe "ユーザー一覧ページ" do
     it "ぺージネーション、削除ボタンが表示されること" do
@@ -124,11 +126,11 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_link 'プロフィール編集', href: edit_user_path(user)
         end
 
-        it "料理の件数が表示されていることを確認" do
+        it "コースの件数が表示されていることを確認" do
           expect(page).to have_content "コース (#{user.courses.count})"
         end
 
-        it "料理の情報が表示されていることを確認" do
+        it "コースの情報が表示されていることを確認" do
           Course.take(5).each do |course|
             expect(page).to have_link course.name
             expect(page).to have_content course.description
@@ -138,7 +140,7 @@ RSpec.describe "Users", type: :system do
           end
         end
 
-        it "料理のページネーションが表示されていることを確認" do
+        it "コースのページネーションが表示されていることを確認" do
           expect(page).to have_css "div.pagination"
         end
 
@@ -152,6 +154,77 @@ RSpec.describe "Users", type: :system do
             click_button 'フォロー中'
             expect(page).to have_button 'フォローする'
           end
+        end
+
+        context "お気に入り登録/解除" do
+          before do
+            login_for_system(user)
+          end
+
+          it "コースのお気に入り登録/解除ができること" do
+            expect(user.favorite?(course)).to be_falsey
+            user.favorite(course)
+            expect(user.favorite?(course)).to be_truthy
+            user.unfavorite(course)
+            expect(user.favorite?(course)).to be_falsey
+          end
+
+          it "トップページからお気に入り登録/解除ができること", js: true do
+            visit root_path
+            link = find('.like')
+            expect(link[:href]).to include "/favorites/#{course.id}/create"
+            link.click
+            link = find('.unlike')
+            expect(link[:href]).to include "/favorites/#{course.id}/destroy"
+            link.click
+            link = find('.like')
+            expect(link[:href]).to include "/favorites/#{course.id}/create"
+          end
+
+          it "ユーザー個別ページからお気に入り登録/解除ができること", js: true do
+            visit user_path(user)
+            link = find('.like')
+            expect(link[:href]).to include "/favorites/#{course.id}/create"
+            link.click
+            link = find('.unlike')
+            expect(link[:href]).to include "/favorites/#{course.id}/destroy"
+            link.click
+            link = find('.like')
+            expect(link[:href]).to include "/favorites/#{course.id}/create"
+          end
+
+          it "コース個別ページからお気に入り登録/解除ができること", js: true do
+            visit course_path(course)
+            link = find('.like')
+            expect(link[:href]).to include "/favorites/#{course.id}/create"
+            link.click
+            link = find('.unlike')
+            expect(link[:href]).to include "/favorites/#{course.id}/destroy"
+            link.click
+            link = find('.like')
+            expect(link[:href]).to include "/favorites/#{course.id}/create"
+          end
+        end
+
+        it "お気に入り一覧ページが期待通り表示されること" do
+          visit favorites_path
+          expect(page).not_to have_css ".favorite-course"
+          user.favorite(course)
+          user.favorite(other_course)
+          visit favorites_path
+          expect(page).to have_css ".favorite-course", count: 2
+          expect(page).to have_content course.name
+          expect(page).to have_content course.description
+          expect(page).to have_content "cooked by #{user.name}"
+          expect(page).to have_link user.name, href: user_path(user)
+          expect(page).to have_content other_course.name
+          expect(page).to have_content other_course.description
+          expect(page).to have_content "cooked by #{other_user.name}"
+          expect(page).to have_link other_user.name, href: user_path(other_user)
+          user.unfavorite(other_course)
+          visit favorites_path
+          expect(page).to have_css ".favorite-course", count: 1
+          expect(page).to have_content course.name
         end
       end
     end
