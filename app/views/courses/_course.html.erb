@@ -1,9 +1,9 @@
 <li id="course-<%= course.id %>">
   <%= link_to gravatar_for(course.user, size: 50), course.user %>
-  <span class="name"><%= link_to course.name, course_path(course) %></span>
   <span>
     <%= link_to((image_tag course.picture.thumb200.url), course_path(course.id), class: 'course-picture') if course.picture.url.present? %>
   </span>
+  <span class="name"><%= link_to course.name, course_path(course) %></span>
   <span class="description"><%= course.description %></span><br>
   <span class="score">スコア：<%= course.score %></span>
   <span class="recommend">人気度：<%= course.recommend %></span><br>

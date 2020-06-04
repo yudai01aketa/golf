@@ -4,7 +4,7 @@ User.create!(name:  "山田 太郎",
             password_confirmation: "foobar",
             admin: true)
 
-50.times do |n|
+30.times do |n|
  name  = Faker::Name.name
  email = "sample-#{n+1}@example.com"
  password = "password"
@@ -24,3 +24,11 @@ end
                memo: "パターの調子が良かったですわ",
                user_id: 1)
 end
+
+# フォロー、フォロワー
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
