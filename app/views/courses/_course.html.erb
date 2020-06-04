@@ -4,6 +4,8 @@
     <%= link_to((image_tag course.picture.thumb200.url), course_path(course.id), class: 'course-picture') if course.picture.url.present? %>
   </span>
   <span class="name"><%= link_to course.name, course_path(course) %></span>
+  <% @course = course %>
+  <%= render 'users/favorite_form' %>
   <span class="description"><%= course.description %></span><br>
   <span class="score">スコア：<%= course.score %></span>
   <span class="recommend">人気度：<%= course.recommend %></span><br>

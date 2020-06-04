@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
   belongs_to :user
+  has_many :favorites, dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   validates :name, presence: true, length: { maximum: 30 }
@@ -16,7 +17,7 @@ class Course < ApplicationRecord
   validate  :picture_size
 
   private
-  
+
   def picture_size
     if picture.size > 5.megabytes
       errors.add(:picture, "：5MBより大きい画像はアップロードできません。")
