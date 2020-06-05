@@ -12,6 +12,7 @@ module Golf
     config.load_defaults 5.2
     # 認証トークンをremoteフォームに埋め込む
     config.action_view.embed_authenticity_token_in_remote_forms = true
+    config.time_zone = 'Tokyo'
     config.generators do |g|
       g.assets false          # CSS, JavaScriptファイルは生成しない
       g.test_framework false  # testファイルは生成しない
