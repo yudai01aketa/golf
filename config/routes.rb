@@ -17,4 +17,5 @@ Rails.application.routes.draw do
     end
   end
   resources :courses
+  resources :comments, only: [:create, :destroy]
 end

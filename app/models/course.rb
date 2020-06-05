@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   validates :name, presence: true, length: { maximum: 30 }
@@ -15,6 +16,11 @@ class Course < ApplicationRecord
             },
             allow_nil: true
   validate  :picture_size
+
+  # 料理に付属するコメントのフィードを作成
+  def feed_comment(course_id)
+    Comment.where("course_id = ?", course_id)
+  end
 
   private
 

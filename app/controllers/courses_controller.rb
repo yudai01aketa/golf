@@ -8,6 +8,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @comment = Comment.new
   end
 
   def create

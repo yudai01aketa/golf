@@ -269,6 +269,27 @@ h2.course-name {
   }
 }
 
+.title-comment {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.comments {
+  list-style: none;
+  li {
+    font-size: 14px;
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+    .comment {
+      font-size: 16px;
+    }
+  }
+}
+
+.comment-create-at {
+  color: grey;
+}
+
 //// コース削除 ////
 .change-course {
   display: inline-block;
