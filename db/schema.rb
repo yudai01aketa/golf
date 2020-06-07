@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_070835) do
+ActiveRecord::Schema.define(version: 2020_06_06_071253) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "course_id"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2020_06_05_070835) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "course_id"], name: "index_favorites_on_user_id_and_course_id", unique: true
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
+    t.integer "from_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|

@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :favorites, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :lists, dependent: :destroy
 
   attr_accessor :remember_token
   before_save :downcase_email
@@ -97,5 +98,20 @@ class User < ApplicationRecord
   # 現在のユーザーがお気に入り登録してたらtrueを返す
   def favorite?(course)
     !Favorite.find_by(user_id: id, course_id: course.id).nil?
+  end
+
+  # コースをリストに登録する
+  def list(course)
+    List.create!(user_id: course.user_id, course_id: course.id, from_user_id: id)
+  end
+
+  # コースをリストから解除する
+  def unlist(list)
+    list.destroy
+  end
+
+  # 現在のユーザーがリスト登録してたらtrueを返す
+  def list?(course)
+    !List.find_by(course_id: course.id, from_user_id: id).nil?
   end
 end
