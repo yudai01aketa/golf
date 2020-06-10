@@ -13,13 +13,14 @@ Rails.application.routes.draw do
   post   "lists/:course_id/create" => "lists#create"
   delete "lists/:list_id/destroy"  => "lists#destroy"
 
-  resources :relationships, only: [:create, :destroy]
   resources :users do
     member do
       get :following, :followers
     end
   end
   resources :courses
+  resources :relationships, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
   resources :notifications, only: :index
+  resources :logs, only: [:create, :destroy]
 end

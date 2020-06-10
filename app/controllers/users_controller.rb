@@ -5,11 +5,13 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   def index
     @users = User.paginate(page: params[:page])
+    @log = Log.new
   end
 
   def show
     @user = User.find(params[:id])
     @courses = @user.courses.paginate(page: params[:page], per_page: 5)
+    @log = Log.new
   end
 
   def new

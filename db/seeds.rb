@@ -23,6 +23,9 @@ end
                recommend: 5,
                memo: "パターの調子が良かったですわ",
                user_id: 1)
+  course = Course.first
+  Log.create!(course_id: course.id,
+  content: course.memo)
 end
 
 # フォロー、フォロワー
