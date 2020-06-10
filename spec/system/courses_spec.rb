@@ -177,4 +177,77 @@ RSpec.describe "Courses", type: :system do
       end
     end
   end
+
+  context "ログ登録＆削除" do
+    context "コース詳細ページから" do
+      it "自分のコースに対するログ登録＆削除が正常に完了すること" do
+        login_for_system(user)
+        visit course_path(course)
+        fill_in "log_content", with: "ログ投稿テスト"
+        click_button "ログ追加"
+        within find("#log-#{Log.first.id}") do
+          expect(page).to have_selector 'span', text: "#{course.logs.count}回目"
+          expect(page).to have_selector 'span',
+                                        text: %Q(#{Log.last.created_at.strftime("%Y/%m/%d(%a)")})
+          expect(page).to have_selector 'span', text: 'ログ投稿テスト'
+        end
+        expect(page).to have_content "コースログを追加しました！"
+        click_link "削除", href: log_path(Log.first)
+        expect(page).not_to have_selector 'span', text: 'ログ投稿テスト'
+        expect(page).to have_content "コースログを削除しました"
+      end
+
+      it "別ユーザーのコースログにはログ登録フォームが無いこと" do
+        login_for_system(other_user)
+        visit course_path(course)
+        expect(page).not_to have_button "作る"
+      end
+    end
+
+    context "トップページから" do
+      it "自分のコースに対するログ登録が正常に完了すること" do
+        login_for_system(user)
+        visit root_path
+        fill_in "log_content", with: "ログ投稿テスト"
+        click_button "追加"
+        expect(Log.first.content).to eq 'ログ投稿テスト'
+        expect(page).to have_content "コースログを追加しました！"
+      end
+
+      it "別ユーザーのコースにはログ登録フォームがないこと" do
+        create(:course, user: other_user)
+        login_for_system(user)
+        user.follow(other_user)
+        visit root_path
+        within find("#course-#{Course.first.id}") do
+          expect(page).not_to have_button "作る"
+        end
+      end
+    end
+
+    context "プロフィールページから" do
+      it "自分の料理に対するログ登録が正常に完了すること" do
+        login_for_system(user)
+        visit user_path(user)
+        fill_in "log_content", with: "ログ投稿テスト"
+        click_button "追加"
+        expect(Log.first.content).to eq 'ログ投稿テスト'
+        expect(page).to have_content "コースログを追加しました！"
+      end
+    end
+
+    context "リスト一覧ページから" do
+      it "自分のコースに対するログ登録が正常に完了し、リストからコースが削除されること" do
+        login_for_system(user)
+        user.list(course)
+        visit lists_path
+        expect(page).to have_content course.name
+        fill_in "log_content", with: "ログ投稿テスト"
+        click_button "追加"
+        expect(Log.first.content).to eq 'ログ投稿テスト'
+        expect(page).to have_content "コースログを追加しました！"
+        expect(List.count).to eq 0
+      end
+    end
+  end
 end

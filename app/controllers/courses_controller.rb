@@ -9,12 +9,14 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @comment = Comment.new
+    @log = Log.new
   end
 
   def create
     @course = current_user.courses.build(course_params)
     if @course.save
       flash[:success] = "コースが登録されました！"
+      Log.create(course_id: @course.id, content: @course.memo)
       redirect_to root_url
     else
       render 'courses/new'
