@@ -1,37 +1,47 @@
 <% provide(:title, "プロフィール") %>
 
-<div class="container">
-  <h3 class="title-profile">プロフィール</h3>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="user-picture-box">
-        <%= gravatar_for @user, size: 120, cl: "gravatar user-picture" %>
-      </div>
-    </div>
-    <div class="col-md-8">
-      <h4 class="show-user-name"><%= @user.name %></h4>　<%= @user.sex %>
-      <div>
-        <%= @user.introduction %>
-      </div>
-      <section class="stats">
-        <%= render 'shared/stats' %>
-      </section>
-      <% if current_user == @user %>
-        <div class="account-edit"><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
-      <% end %>
-      <%= render 'follow_form' if logged_in? %>
-    </div>
-
-    <div class="row">
-      <div class="col-md-9">
-        <% if @user.courses.any? %>
-          <h3>コース (<%= @user.courses.count %>)</h3>
-          <ol class="courses">
-            <%= render @courses %>
-          </ol>
-          <%= will_paginate @courses %>
-        <% end %>
-      </div>
+<h3 class="title-profile">プロフィール</h3>
+<div class="row">
+  <div class="col-md-4">
+    <div class="user-picture-box">
+      <%= gravatar_for @user, size: 120, cl: "gravatar user-picture" %>
     </div>
   </div>
+  <div class="col-md-8">
+    <h4 class="show-user-name"><%= @user.name %></h4>　<%= @user.sex %>
+    <div>
+      <%= @user.introduction %>
+    </div>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+    <% if current_user == @user %>
+      <div class="account-edit"><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
+    <% end %>
+    <%= render 'follow_form' if logged_in? %>
+  </div>
 </div>
+
+<% if @user.courses.any? %>
+  <ol class="courses">
+    <div><h3>コース (<%= @user.courses.count %>)</h3></div>
+    <div class="row">
+      <% @courses.each do |course| %>
+        <div class="col-lg-4 col-md-4 col-sm-6">
+          <a href="<%= course_path(course.id) %>" class="fh5co-card-item image-popup">
+            <figure>
+              <div class="overlay"><i class="ti-plus"></i></div>
+              <img src="<%= "#{course.picture.thumb330.url}" if course.picture.url.present? %>",  alt="Image", class='img-responsive' %>
+            </figure>
+            <div class="fh5co-text">
+              <h2 class="course-name"><%= course.name %></h2>
+              <p><%= course.memo %></p>
+            </div>
+          </a>
+        </div>
+      <% end %>
+    </div>
+
+  </ol>
+  <%= will_paginate @courses %>
+<% end %>

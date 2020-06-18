@@ -136,7 +136,7 @@ RSpec.describe "Users", type: :system do
             expect(page).to have_content course.description
             expect(page).to have_content course.user.name
             expect(page).to have_content course.score
-            expect(page).to have_content course.recommend
+            expect(page).to have_content "★" * course.recommend + "☆" * (5 - course.recommend)
           end
         end
 

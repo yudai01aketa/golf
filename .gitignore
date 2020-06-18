@@ -33,4 +33,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/vendor
+# Ignore gems
+/vendor/bundle
+/vendor/.keep

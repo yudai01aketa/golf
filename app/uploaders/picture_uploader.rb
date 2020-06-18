@@ -24,6 +24,11 @@ class PictureUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [200, 200, "Center"]
   end
 
+  # プロフィール一覧表示用：330 * 240の長方形に整形
+  version :thumb330 do
+    process resize_to_fill: [330, 240, "Center"]
+  end
+
   def extension_whitelist
     %w(jpg jpeg png)
   end
