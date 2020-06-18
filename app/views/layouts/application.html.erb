@@ -7,12 +7,22 @@
   </head>
   <body>
     <div id="page">
-      <%= render 'layouts/header' %>
-      <% flash.each do |message_type, message| %>
-        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-      <% end %>
-      <%= yield %>
+      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/sp_navigation' %>
+      <div class="gtco-section">
+        <div class="gtco-container">
+          <% flash.each do |message_type, message| %>
+            <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+          <% end %>
+          <%= yield %>
+          <%= render 'layouts/footer' %>
+          <div class="gototop js-top">
+            <a href="#" class="js-gotop"><i class="fas fa-arrow-up"></i></a>
+          </div>
+          <%= render 'layouts/js' %>
+        </div>
+      </div>
     </div>
-    <%= render 'layouts/footer' %>
+
   </body>
 </html>

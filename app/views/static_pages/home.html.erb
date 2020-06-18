@@ -11,9 +11,16 @@
     </div>
   </div>
 <% else %>
-  <center>
-    <h1>Enjoy Golfへようこそ!</h1>
-    <h2>オススメのコースをみんなにシェアしませんか？</h2>
-    <p>もういつものコースに飽きない</p>
-  </center>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+      <h2>Enjoy Golf へようこそ!</h2>
+      <p>オススメのコースをみんなにシェアしませんか？</p>
+      <p>
+        <%= link_to 'Enjoy Golfを始めよう', signup_path, class: "btn btn-primary btn-lg btn-demo" %>
+      </p>
+      <p>
+        <%= link_to 'テストログイン', signup_path, class: "btn btn-primary btn-lg btn-demo" %>
+      </p>
+    </div>
+  </div>
 <% end %>

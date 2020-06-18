@@ -1,5 +1,3 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
 
 // ミックスイン//
 @mixin box_sizing {
@@ -8,57 +6,166 @@
   box-sizing:         border-box;
 }
 
-// 全ページ共通//
-body {
-  padding-top: 60px;
-}
-
-section {
-  overflow: auto;
-}
-
-textarea {
-  resize: vertical;
-}
-
-.center {
-  text-align: center;
-  h1 {
-    margin-bottom: 10px;
-  }
-}
-
-// テキストの見栄え //
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
 h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
+   margin: 0; padding: 0;
+   font-size: 20px;
 }
-
+a {
+   text-decoration: none;
+}
+nav {
+   margin: 0 0 0 auto;
+}
+ul {
+   list-style: none;
+   margin: 0;
+}
+li {
+   margin: 0 0 0 15px;
+   font-size: 14px;
+}
+.main-visual {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background: url('main_visual.jpg') top center / cover no-repeat;
+}
 h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #777;
+   margin: 0;
+   font-size: 30px;
+   font-weight: normal;
 }
 
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+.sp-nav {
+   display: none;
 }
 
-// ヘッダー //
-.navbar ul{
-  margin-top: 12px;
-  margin-bottom: 12px;
+///ヘッダースマホ用///
+@media screen and (max-width: 640px) {
+
+  header {
+     padding: 30px 4% 10px;
+     top: 0;
+     width: 100%;
+     display: flex;
+     align-items: center;
+     background-color: white;
+     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  }
+  .gtco-container {
+    margin-top: 50px;
+  }
+   .pc-nav {
+      display: none;
+   }
+   .sp-nav {
+      z-index: 1;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      display: block;
+      width: 100%;
+      background: rgba(0, 0, 0, .8);
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: all .2s ease-in-out;
+   }
+   #hamburger {
+      position: relative;
+      display: block;
+      width: 30px;
+      height: 25px;
+      margin: 0 0 0 auto;
+   }
+   #hamburger span {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 2px;
+      transform: translateY(-50%);
+      background-color: #000;
+   }
+   #hamburger::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #000;
+   }
+   #hamburger::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 70%;
+      height: 2px;
+      background-color: #000;
+   }
+   /*スマホメニュー*/
+   .sp-nav ul {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+   }
+   .sp-nav li {
+      margin: 0;
+      padding: 0;
+   }
+   .sp-nav li span {
+      font-size: 15px;
+   }
+   .sp-nav li a, .sp-nav li span {
+      display: block;
+      padding: 20px 0;
+   }
+   /*-閉じるアイコンー*/
+   .sp-nav .close {
+      position: relative;
+   }
+   .sp-nav .close::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      display: block;
+      width: 16px;
+      height: 1px;
+   }
+   .sp-nav .close::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      display: block;
+      width: 16px;
+      height: 1px;
+   }
+   .toggle {
+      transform: translateY( 0 );
+      opacity: 1;
+   }
+   .main-visual {
+      padding: 0 4%;
+   }
+   h2 {
+      line-height: 1.6;
+      text-align: center;
+   }
 }
+
+///ヘッダーロゴ///
  #logo {
   float: left;
   margin-top: 10px;
@@ -67,18 +174,24 @@ p {
     width: 150px;
   }
 }
+///ヘッダー///
+.navbar-fixed-top {
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  padding-top: 15px;
 
-// フッター //
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #777;
-  small {
-    float: center;
+  .header-link {
+    font-size: 20px;
   }
 }
 
+///フッター///
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid #eaeaea;;
+}
 // フォーム //
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
@@ -143,6 +256,10 @@ input {
   margin-top: 20px;
 }
 
+.course-name {
+  margin-top: 20px;
+}
+
 //// ユーザー一覧ページ ////
 .users {
  list-style: none;
@@ -183,6 +300,9 @@ input {
     float: left;
     margin-right: 10px;
     margin-top: 5px;
+  }
+  .fh5co-text h2 {
+    margin-top: 15px;
   }
 }
 
@@ -290,6 +410,37 @@ h2.course-name {
   color: grey;
 }
 
+// コース一覧
+.course-user {
+  text-align: right;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+h3.course-name {
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.course-description {
+  margin-top: 10px;
+}
+
+// お気に入り
+.course-user {
+ margin-bottom: 20px;
+}
+
+// リスト
+.list-button {
+ margin-bottom: 20px;
+}
+
+// ログ
+.add-cooklog {
+ font-weight: bold;
+}
 ///コースログ///
 
 .title-courselog {
@@ -312,7 +463,6 @@ h2.course-name {
     }
   }
 }
-
 
 //// コース削除 ////
 .change-course {

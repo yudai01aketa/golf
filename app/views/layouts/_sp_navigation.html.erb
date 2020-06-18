@@ -1,0 +1,38 @@
+<header>
+  <div class="col-sm-4 col-xs-12">
+    <%= link_to(image_tag("header_logo.png", :alt => ""), root_url, id: 'logo') %>
+  </div>
+
+  <nav class="sp-nav">
+     <ul>
+       <% if logged_in? %>
+         <% if current_user.notification == true %>
+           <li>
+         <% else %>
+           <li>
+         <% end %>
+         <%= link_to notifications_path do %>
+           <span class="fas fa-bell"> 通知</span>
+         <% end %>
+         </li>
+         <li><%= link_to ' お気に入り', favorites_path ,class: "fas fa-heart"%></li>
+         <li><%= link_to ' 行く予定リスト', lists_path, class: "fas fa-list-alt" %></li>
+         <li><%= link_to 'プロフィール', current_user %></li>
+         <li><%= link_to 'ユーザー一覧', users_path %></li>
+         <li><%= link_to 'Enjoy Golfとは？', about_path %></li>
+         <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+
+         <% else %>
+           <li><%= link_to ' Enjoy Golfとは？', about_path, class: "fas fa-question-circle" %></li>
+           <li><%= link_to 'ユーザー登録(無料)', signup_path, class: "fas fa-user-plus" %></li>
+           <li class="header-link"><%= link_to 'ログイン', login_path %></li>
+         <% end %>
+
+        <li class="close"><span>閉じる</span></li>
+     </ul>
+   </nav>
+
+  <div id="hamburger">
+     <span></span>
+  </div>
+</header>
