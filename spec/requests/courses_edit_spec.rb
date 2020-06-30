@@ -14,10 +14,8 @@ RSpec.describe "コース編集", type: :request do
       expect(response).to redirect_to edit_course_url(course)
       patch course_path(course), params: {
         course: {
-          name: "大神戸ゴルフ場",
-          description: "四季折々の風景が楽しめるコースとなっております",
+          name: "大神戸ゴルフ倶楽部",
           tips: "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています",
-          reference: "https://cookpad.com/recipe/2798655",
           score: 100,
           recommend: 5,
           picture: picture2
@@ -38,10 +36,8 @@ RSpec.describe "コース編集", type: :request do
       # 更新
       patch course_path(course), params: {
         course: {
-          name: "大神戸ゴルフ場",
-          description: "四季折々の風景が楽しめるコースとなっております",
+          name: "大神戸ゴルフ倶楽部",
           tips: "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています",
-          reference: "https://cookpad.com/recipe/2798655",
           score: 100,
           recommend: 5,
           picture: picture2
@@ -61,10 +57,8 @@ RSpec.describe "コース編集", type: :request do
       # 更新
       patch course_path(course), params: {
         course: {
-          name: "大神戸ゴルフ場",
-          description: "四季折々の風景が楽しめるコースとなっております",
+          name: "大神戸ゴルフ倶楽部",
           tips: "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています",
-          reference: "https://cookpad.com/recipe/2798655",
           score: 100,
           recommend: 4,
           picture: picture2

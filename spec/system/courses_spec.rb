@@ -33,11 +33,10 @@ RSpec.describe "Courses", type: :system do
     end
 
     context "コース登録処理" do
-      it "有効な情報で料理登録を行うとコース登録成功のフラッシュが表示されること" do
-        fill_in "コース名", with: "大神戸"
+      it "有効な情報でコース登録を行うとコース登録成功のフラッシュが表示されること" do
+        fill_in "コース名", with: "大神戸ゴルフ倶楽部"
         fill_in "説明", with: "四季折々の風景が楽しめるコースとなっております"
         fill_in "コツ・ポイント", with: "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています"
-        fill_in "コースの詳細URL", with: "https://cookpad.com/recipe/2798655"
         fill_in "スコア", with: 100
         fill_in "オススメ度", with: 5
         attach_file "course[picture]", "#{Rails.root}/spec/fixtures/test_course.jpg"
@@ -49,7 +48,6 @@ RSpec.describe "Courses", type: :system do
         fill_in "コース名", with: ""
         fill_in "説明", with: "四季折々の風景が楽しめるコースとなっております"
         fill_in "コツ・ポイント", with: "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています"
-        fill_in "コースの詳細URL", with: "https://cookpad.com/recipe/2798655"
         fill_in "スコア", with: 100
         fill_in "オススメ度", with: 5
         click_button "登録する"
@@ -71,11 +69,8 @@ RSpec.describe "Courses", type: :system do
 
       it "コース情報が表示されること" do
         expect(page).to have_content course.name
-        expect(page).to have_content course.description
         expect(page).to have_content course.tips
-        expect(page).to have_content course.reference
         expect(page).to have_content course.score
-        expect(page).to have_content course.recommend
       end
 
       context "コースの削除", js: true do
@@ -116,21 +111,17 @@ RSpec.describe "Courses", type: :system do
 
     context "コースの更新処理" do
       it "有効な更新" do
-        fill_in "コース名", with: "編集：大神戸"
-        fill_in "説明", with: "四季折々の風景が楽しめるコースです、六甲の絶景をお楽しみ下さい"
-        fill_in "コツ・ポイント", with: "編集：バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています"
-        fill_in "コースの詳細URL", with: "henshu-https://cookpad.com/recipe/2798655"
+        fill_in "コース名", with: "大神戸ゴルフ倶楽部"
+        fill_in "コツ・ポイント", with: "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています"
         fill_in "スコア", with: 100
-        fill_in "オススメ度", with: 4
+        fill_in "オススメ度", with: 5
         attach_file "course[picture]", "#{Rails.root}/spec/fixtures/test_course2.jpg"
         click_button "更新する"
         expect(page).to have_content "コース情報が更新されました！"
-        expect(course.reload.name).to eq "編集：大神戸"
-        expect(course.reload.description).to eq "四季折々の風景が楽しめるコースです、六甲の絶景をお楽しみ下さい"
-        expect(course.reload.tips).to eq "編集：バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています"
-        expect(course.reload.reference).to eq "henshu-https://cookpad.com/recipe/2798655"
+        expect(course.reload.name).to eq "大神戸ゴルフ倶楽部"
+        expect(course.reload.tips).to eq "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています"
         expect(course.reload.score).to eq 100
-        expect(course.reload.recommend).to eq 4
+        expect(course.reload.recommend).to eq 5
         expect(course.reload.picture.url).to include "test_course2.jpg"
       end
 
@@ -222,17 +213,6 @@ RSpec.describe "Courses", type: :system do
         within find("#course-#{Course.first.id}") do
           expect(page).not_to have_button "作る"
         end
-      end
-    end
-
-    context "プロフィールページから" do
-      it "自分の料理に対するログ登録が正常に完了すること" do
-        login_for_system(user)
-        visit user_path(user)
-        fill_in "log_content", with: "ログ投稿テスト"
-        click_button "追加"
-        expect(Log.first.content).to eq 'ログ投稿テスト'
-        expect(page).to have_content "コースログを追加しました！"
       end
     end
 

@@ -1,3 +1,4 @@
+//レスポンシブデザイン、スマホサイズ時のheader//
 $(function() {
    const hum = $('#hamburger, .close')
    const nav = $('.sp-nav')

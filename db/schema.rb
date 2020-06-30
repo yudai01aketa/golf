@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_07_141032) do
+ActiveRecord::Schema.define(version: 2020_06_23_145737) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "course_id"
@@ -34,6 +34,12 @@ ActiveRecord::Schema.define(version: 2020_06_07_141032) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
+    t.string "golf_course_name"
+    t.string "address"
+    t.integer "latitude"
+    t.integer "longitude"
+    t.integer "golf_course_id"
+    t.string "golf_course_image"
     t.index ["user_id", "created_at"], name: "index_courses_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
