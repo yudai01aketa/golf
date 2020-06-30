@@ -1,0 +1,71 @@
+#controller
+  def autocomplete_search
+    places = {}
+    if params[:term]
+      courses = RakutenWebService::Gora::Course.search(keyword: params[:term].to_s)
+      courses.each do |course|
+        golf_course_id = course['golfCourseId']
+        golf_course_name = course['golfCourseName']
+        golf_course_name = golf_course_name.to_s + '[' + golf_course_id.to_s + ']'
+        places[golf_course_id] = golf_course_name
+      end
+    end
+    render json: places.to_json
+  end
+
+#view
+  def golf_course_info
+    course_info = RakutenWebService::Gora::CourseDetail.search(golfCourseId: params[:course_id])
+    unless course_info.nil?
+      course_info_first = course_info.first
+      address = course_info_first['address']
+      golf_course_image_url = course_info_first['golfCourseImageUrl1']
+      respond_to do |format|
+        format.json do
+          render json: { address: address,
+                         golf_course_image_url: golf_course_image_url }, status: :ok
+        end
+      end
+    end
+  end
+
+#model
+<td class="search-item-body">
+  <div class="w-100">
+    <%= f.search_field :place_cont, id: :place_id, placeholder: "入力に応じて候補が表示されます",
+      class: "search-item-text" %>
+    <%= f.hidden_field :course_id, id: :course_id %>
+  </div>
+</td>
+
+
+rails g migration AddColumnToCourse place:string address:string latitude:integer longitude:integer golf_course_id:integer
+golf_course_image:string
+
+address:string latitude:integer longitude:integer
+からはGoogleMapを表示するときに使う
+
+golf_course_image
+はコース詳細ページのバックグラウンド背景に使用
+
+基本的に情報はコース名から関連された適切な情報を各データに付与する形をとる。
+
+model rakuten_golf_place
+class AddPlaceToEvents < ActiveRecord::Migration[5.2]
+  def change
+    add_column :courses, :place, :string
+    add_column :courses, :address, :string
+    add_column :courses, :course_id, :integer
+  end
+end
+
+
+
+courses = RakutenWebService::Gora::Course.search(keyword: "神戸", hits: 10).golf_course_name
+
+<% courses.each do |course| %>
+ <%= course.golf_course_name %>
+<% end %>
+
+
+<%= @courses.first.golf_course_image_url %>

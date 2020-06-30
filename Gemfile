@@ -39,6 +39,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  gem "pry"
 end
 
 group :test do
@@ -50,6 +51,7 @@ end
 
 gem 'devise'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'ransack'
 
 group :production do # 本番環境
   gem 'pg' # PostgreSQL

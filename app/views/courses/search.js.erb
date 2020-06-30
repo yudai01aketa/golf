@@ -1,0 +1,5 @@
+$('#Course_name').empty();
+
+<% @courses.each do |course| %>
+  $('#Course_name').append("<p><%= course.golf_course_name %></p>")
+<% end %>

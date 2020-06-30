@@ -133,15 +133,9 @@ RSpec.describe "Users", type: :system do
         it "コースの情報が表示されていることを確認" do
           Course.take(5).each do |course|
             expect(page).to have_link course.name
-            expect(page).to have_content course.description
             expect(page).to have_content course.user.name
             expect(page).to have_content course.score
-            expect(page).to have_content "★" * course.recommend + "☆" * (5 - course.recommend)
           end
-        end
-
-        it "コースのページネーションが表示されていることを確認" do
-          expect(page).to have_css "div.pagination"
         end
 
         context "ユーザーのフォロー/アンフォロー処理", js: true do
@@ -167,30 +161,6 @@ RSpec.describe "Users", type: :system do
             expect(user.favorite?(course)).to be_truthy
             user.unfavorite(course)
             expect(user.favorite?(course)).to be_falsey
-          end
-
-          it "トップページからお気に入り登録/解除ができること", js: true do
-            visit root_path
-            link = find('.like')
-            expect(link[:href]).to include "/favorites/#{course.id}/create"
-            link.click
-            link = find('.unlike')
-            expect(link[:href]).to include "/favorites/#{course.id}/destroy"
-            link.click
-            link = find('.like')
-            expect(link[:href]).to include "/favorites/#{course.id}/create"
-          end
-
-          it "ユーザー個別ページからお気に入り登録/解除ができること", js: true do
-            visit user_path(user)
-            link = find('.like')
-            expect(link[:href]).to include "/favorites/#{course.id}/create"
-            link.click
-            link = find('.unlike')
-            expect(link[:href]).to include "/favorites/#{course.id}/destroy"
-            link.click
-            link = find('.like')
-            expect(link[:href]).to include "/favorites/#{course.id}/create"
           end
 
           it "コース個別ページからお気に入り登録/解除ができること", js: true do
@@ -282,7 +252,6 @@ RSpec.describe "Users", type: :system do
             visit notifications_path
             expect(page).not_to have_content 'お気に入りに登録されました。'
             expect(page).not_to have_content course.name
-            expect(page).not_to have_content course.description
             expect(page).not_to have_content course.created_at
           end
 
@@ -294,7 +263,6 @@ RSpec.describe "Users", type: :system do
             expect(page).not_to have_content 'コメントしました。'
             expect(page).not_to have_content '自分でコメント'
             expect(page).not_to have_content other_course.name
-            expect(page).not_to have_content other_course.description
             expect(page).not_to have_content other_course.created_at
           end
         end
@@ -315,41 +283,6 @@ RSpec.describe "Users", type: :system do
       expect(user.list?(course)).to be_falsey
     end
 
-    it "トップページからリスト登録/解除ができること", js: true do
-      visit root_path
-      link = find('.list')
-      expect(link[:href]).to include "/lists/#{course.id}/create"
-      link.click
-      link = find('.unlist')
-      expect(link[:href]).to include "/lists/#{List.first.id}/destroy"
-      link.click
-      link = find('.list')
-      expect(link[:href]).to include "/lists/#{course.id}/create"
-    end
-
-    it "ユーザー個別ページからリスト登録/解除ができること", js: true do
-      visit user_path(user)
-      link = find('.list')
-      expect(link[:href]).to include "/lists/#{course.id}/create"
-      link.click
-      link = find('.unlist')
-      expect(link[:href]).to include "/lists/#{List.first.id}/destroy"
-      link.click
-      link = find('.list')
-      expect(link[:href]).to include "/lists/#{course.id}/create"
-    end
-
-    it "コース個別ページからリスト登録/解除ができること", js: true do
-      link = find('.list')
-      expect(link[:href]).to include "/lists/#{course.id}/create"
-      link.click
-      link = find('.unlist')
-      expect(link[:href]).to include "/lists/#{List.first.id}/destroy"
-      link.click
-      link = find('.list')
-      expect(link[:href]).to include "/lists/#{course.id}/create"
-    end
-
     it "リスト一覧ページが期待通り表示され、リストから削除することもできること" do
       visit lists_path
       expect(page).not_to have_css ".list-course"
@@ -359,7 +292,6 @@ RSpec.describe "Users", type: :system do
       visit lists_path
       expect(page).to have_css ".list-course", count: 2
       expect(page).to have_content course.name
-      expect(page).to have_content course.description
       expect(page).to have_content List.last.created_at.strftime("%Y/%m/%d(%a) %H:%M")
       expect(page).to have_content "このコースに行ってみたいに追加しました。"
       expect(page).to have_content course_2.name

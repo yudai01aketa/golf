@@ -2,12 +2,21 @@ class CoursesController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user, only: [:edit, :update]
 
+  def index
+    @log = Log.new
+  end
+
   def new
     @course = Course.new
   end
 
+  def search
+    @courses = RakutenWebService::Gora::Course.search(keyword: params[:keyword], hits: 10)
+  end
+
   def show
     @course = Course.find(params[:id])
+    @courses = RakutenWebService::Gora::Course.search(keyword: @course.name).first
     @comment = Comment.new
     @log = Log.new
   end
@@ -59,37 +68,8 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(
-      :name, :discription, :tips,
+      :name, :discription, :tips, :address, :latitude, :longitude,
       :reference, :score, :recommend, :memo, :picture
     )
-  end
-
-  def autocomplete_search
-    places = {}
-    if params[:term]
-      courses = RakutenWebService::Gora::Course.search(keyword: params[:term].to_s)
-      courses.each do |course|
-        golf_course_id = course['golfCourseId']
-        golf_course_abbr = course['golfCourseAbbr']
-        golf_course_abbr = golf_course_abbr.to_s + '[' + golf_course_id.to_s + ']'
-        places[golf_course_id] = golf_course_abbr
-      end
-    end
-    render json: places.to_json
-  end
-
-  def golf_course_info
-    course_info = RakutenWebService::Gora::CourseDetail.search(golfCourseId: params[:course_id])
-    unless course_info.nil?
-      course_info_first = course_info.first
-      address = course_info_first['address']
-      golf_course_image_url = course_info_first['golfCourseImageUrl1']
-      respond_to do |format|
-        format.json do
-          render json: { address: address,
-                         golf_course_image_url: golf_course_image_url }, status: :ok
-        end
-      end
-    end
   end
 end
