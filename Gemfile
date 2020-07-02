@@ -23,6 +23,8 @@ gem 'rakuten_web_service'
 # 画像
 gem 'carrierwave', '1.2.2'
 gem "mini_magick", '>= 4.9.4'
+# GoogleMap
+gem "gmaps4rails"
 
 group :development, :test do
   gem 'sqlite3'

@@ -18,4 +18,4 @@ Rails.application.config.assets.precompile += %w(
   style.css magnific-popup.css modernizr-2.6.2.min.js \
   jquery.min.js jquery.easing.1.3.js bootstrap.min.js \
   jquery.waypoints.min.js main.js jquery.flexslider-min.js \
-  custom.js respond.min.js )
+  custom.js respond.min.js underscore.js )
