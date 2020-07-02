@@ -14,4 +14,6 @@
 //= require modernizr-2.6.2.min
 //= require activestorage
 //= require turbolinks
+//= require underscore
+//= require gmaps/google
 // require_tree .

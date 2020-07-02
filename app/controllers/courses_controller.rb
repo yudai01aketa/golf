@@ -19,6 +19,11 @@ class CoursesController < ApplicationController
     @courses = RakutenWebService::Gora::Course.search(keyword: @course.name).first
     @comment = Comment.new
     @log = Log.new
+    @hash = Gmaps4rails.build_markers(@place) do |place, marker|
+      marker.lat place.latitude
+      marker.lng place.longitude
+      marker.infowindow place.name
+    end
   end
 
   def create
