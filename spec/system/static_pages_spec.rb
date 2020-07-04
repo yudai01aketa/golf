@@ -14,6 +14,10 @@ RSpec.describe "StaticPages", type: :system do
       it "正しいタイトルが表示されることを確認" do
         expect(page).to have_title full_title
       end
+
+      it "ゲストログインが表示されることを確認" do
+        expect(page).to have_content 'ゲストログイン'
+      end
     end
 
     context "コースフィード", js: true do
