@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   get    :lists, to: 'lists#index'
   post   "lists/:course_id/create" => "lists#create"
   delete "lists/:list_id/destroy"  => "lists#destroy"
-  get    'search' => 'courses#search' 
-
+  get    'search' => 'courses#search'
+  post   '/users/guest_sign_in', to: 'sessions#new_guest'
 
   resources :users do
     member do

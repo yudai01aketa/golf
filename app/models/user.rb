@@ -114,4 +114,11 @@ class User < ApplicationRecord
   def list?(course)
     !List.find_by(course_id: course.id, from_user_id: id).nil?
   end
+
+  def self.guest
+    find_or_create_by(name: "ゲストユーザー", email: 'sample@example.com') do |user|
+      user.password = "foobar"
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+    end
+  end
 end
