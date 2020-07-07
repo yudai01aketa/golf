@@ -3,10 +3,13 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-    <div class="gravatar_edit">
-      <%= gravatar_for(@user, size: 40) %>
+    <div class="user_image_edit">
       <%= @user.name %>
-      <a href="http://gravatar.com/emails" target="_blank">プロフィール写真を変更</a>
+      <span class="image">
+        <%= f.label :image %>　<span class="input-unneed">※任意</span>
+        <%= f.file_field :image, accept: 'image/jpeg,image/png', class: 'form-control', id: 'user-image' %>
+        <%= image_tag(@user.image.url) if @user.image.present? %>
+      </span>
     </div>
     <p></p>
     <div class = 'form-group'>
@@ -25,7 +28,13 @@
       <%= f.label :sex %>
       <%= f.text_field :sex, class: 'form-control', id: 'user_sex' %>
     </div>
-    <%= f.submit "更新する", class: "btn btn-primary" %>s
+
+    <div class = 'form-group'>
+      <%= f.label :best_score %>
+      <%= f.text_field :best_score, class: 'form-control', id: 'best_score' %>
+    </div>
+
+    <%= f.submit "更新する", class: "btn btn-primary" %>
     <%= link_to "アカウントを削除する", user_path(@user), method: :delete,
                              data: { confirm: "本当にこのアカウントを削除してよろしいですか？" } %>
     <% end %>

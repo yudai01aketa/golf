@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_23_145737) do
+ActiveRecord::Schema.define(version: 2020_07_04_072103) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "course_id"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 2020_06_23_145737) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.boolean "notification", default: false
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
