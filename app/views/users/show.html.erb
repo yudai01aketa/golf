@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-md-4">
     <div class="user-picture-box">
-      <%= gravatar_for @user, size: 120, cl: "gravatar user-picture" %>
+      <%= image_tag @user.image.url, class: 'user-image', size: 100  %>
     </div>
   </div>
   <div class="col-md-8">

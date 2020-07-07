@@ -3,8 +3,9 @@ class UsersController < ApplicationController
     :index, :show, :edit, :update, :destroy, :following, :followers,
   ]
   before_action :correct_user, only: [:edit, :update]
+
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page], per_page: 20)
     @log = Log.new
   end
 
@@ -84,7 +85,7 @@ class UsersController < ApplicationController
 
   # プロフィール編集時に許可する属性
   def user_params_update
-    params.require(:user).permit(:name, :email, :introduction, :sex)
+    params.require(:user).permit(:name, :email, :introduction, :sex, :image)
   end
 
   # 正しいユーザーかどうか確認

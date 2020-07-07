@@ -22,6 +22,8 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validate  :image_size
+  mount_uploader :image, ImageUploader
 
   def downcase_email
     self.email = email.downcase
@@ -119,6 +121,14 @@ class User < ApplicationRecord
     find_or_create_by(name: "ゲストユーザー", email: 'sample@example.com') do |user|
       user.password = "foobar"
       # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+    end
+  end
+
+  private
+
+  def image_size
+    if image.size > 5.megabytes
+      errors.add(:image, "：5MBより大きい画像はアップロードできません。")
     end
   end
 end

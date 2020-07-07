@@ -58,7 +58,7 @@ course = Course.first
 Log.create!(course_id: course.id,
 content: course.memo)
 
-Course.create!(name: "ウィンザー・グレートピーク・オブ・トーヤ",
+Course.create!(name: "千葉新日本ゴルフ倶楽部",
              tips: "景色がかなりいいが、風が強め",
              score: 100,
              recommend: 4,
@@ -102,7 +102,7 @@ course = Course.first
 Log.create!(course_id: course.id,
 content: course.memo)
 
-Course.create!(name: "六甲カントリー倶楽部",
+Course.create!(name: "神有カントリー倶楽部",
              tips: "六甲の景色を見ながら優雅に回れます。山奥にあるので平地より少し寒いです",
              score: 110,
              recommend: 5,
