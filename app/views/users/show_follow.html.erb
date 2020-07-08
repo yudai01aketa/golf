@@ -2,7 +2,9 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <%= gravatar_for @user %>
+      <div class="user-picture-box">
+        <%= image_tag @user.image.url, class: 'user-image', size: 100  %>
+      </div>
       <h1><%= @user.name %></h1>
       <span><%= link_to "プロフィール", @user %></span>
       <span><b>コース</b><%= @user.courses.count %><b>件</b></span>

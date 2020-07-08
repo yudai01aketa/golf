@@ -40,3 +40,9 @@ Style/MixinUsage:
 
 Style/MutableConstant:
   Enabled: false
+
+Airbnb/DefaultScope:
+  Enabled: false
+
+Airbnb/RiskyActiverecordInvocation:
+  Enabled: false
