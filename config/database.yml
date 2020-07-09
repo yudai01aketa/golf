@@ -1,23 +1,31 @@
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  host: db
-  username: postgres
-  password: password
-  pool: 5
-
-development:
-  <<: *default
-  database: myapp_development
-
-test:
-  <<: *default
-  database: myapp_test
-  host: localhost
-  port: 5432
-
 production:
   <<: *default
   database: myapp_production
   username: myapp
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+
+  default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password:
+  # hostにデータベースのコンテナ名であるdbを指定する
+  host: db
+  port: 5432
+
+development:
+  <<: *default
+  database: supplebox_development
+
+test:
+  <<: *default
+  database: supplebox_test
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: supplebox_production
+  username: supplebox
+  password: <%= ENV['SUPPLEBOX_DATABASE_PASSWORD'] %>
