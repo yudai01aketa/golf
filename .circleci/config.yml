@@ -51,7 +51,7 @@ jobs:
       - run: yarn install
       - run:
           name: set_up_db
-          command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
+          command: dockerize -wait tcp://127.0.0.1:5432
 
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
