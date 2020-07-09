@@ -49,6 +49,10 @@ jobs:
             - v1-dependencies-
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - run: yarn install
+
+      - run:
+        name: DBの起動を待つ
+        command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
       # Rspec
       - run:
           name: Rspec
