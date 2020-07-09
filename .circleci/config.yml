@@ -49,9 +49,6 @@ jobs:
             - v1-dependencies-
       - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - run: yarn install
-
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
       # Rspec
       - run:
           name: Rspec
