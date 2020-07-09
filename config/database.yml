@@ -28,7 +28,7 @@ development:
 
 test:
   <<: *default
-  host: localhost # ここの指定がないのでエラーになっていた
+  host: db
   database: myapp_test
 
   # The specified database role being used to connect to postgres.
