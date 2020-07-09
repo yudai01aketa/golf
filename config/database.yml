@@ -12,8 +12,8 @@ development:
 
 test:
   <<: *default
-  host: db
   database: myapp_test
+  host: localhost
 
 production:
   <<: *default
