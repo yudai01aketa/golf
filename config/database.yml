@@ -13,24 +13,3 @@ production:
   # hostにデータベースのコンテナ名であるdbを指定する
   host: db
   port: 5432
-
-development:
-  <<: *default
-  database: supplebox_development
-
-test:
-  <<: *default
-  database: supplebox_test
-
-production:
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
-  database: supplebox_production
-  username: supplebox
-  password: <%= ENV['SUPPLEBOX_DATABASE_PASSWORD'] %>
-
-default: &default
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
