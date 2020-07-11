@@ -52,7 +52,7 @@ jobs:
       # Rspec
       - run:
           name: Rspec
-          command: bundle exec bin/rspec
+          command: bundle exec rspec
 
 workflows:
   version: 2
