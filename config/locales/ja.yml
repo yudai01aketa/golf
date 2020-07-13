@@ -37,7 +37,7 @@ ja:
         picture: コースの写真
       comment:
         user_id: コメント投稿者のID
-        dish_id: コメントされたコースのID
+        course_id: コメントされたコースのID
         content: コメント
       log:
         content: メモ
