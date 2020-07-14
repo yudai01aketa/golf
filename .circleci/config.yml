@@ -39,6 +39,11 @@ jobs:
             paths:
               - ./vendor/bundle
 
+        # Rubocopを起動する
+        - run:
+            name: Rubocop
+            command: bundle exec rubocop
+
         #↓追加する
         - run:
             name: DBの起動を待つ
