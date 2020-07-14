@@ -1,4 +1,3 @@
-#変更後
 Capybara.register_driver :chrome_headless do |app|
   options = ::Selenium::WebDriver::Chrome::Options.new
 
