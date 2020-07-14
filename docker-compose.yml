@@ -12,11 +12,6 @@ services:
     tty: true
     stdin_open: true
     environment:
-      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
-      selenium_chrome:
-      image: selenium/standalone-chrome-debug
-      logging:
-        driver: none
       DATABASE_USER: postgres
       DATABASE_PASSWORD:
       DATABASE_PORT: 5432
