@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe "料理の削除", type: :request do
+RSpec.describe "コースの削除", type: :request do
   let!(:user) { create(:user) }
   let!(:other_user) { create(:user) }
   let!(:course) { create(:course, user: user) }
 
-  context "ログインしていて、自分の料理を削除する場合" do
+  context "ログインしていて、自分のコースを削除する場合" do
     it "処理が成功し、トップページにリダイレクトすること" do
       login_for_request(user)
       expect {

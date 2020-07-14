@@ -44,7 +44,7 @@ RSpec.describe "Courses", type: :system do
         expect(page).to have_content "コースが登録されました！"
       end
 
-      it "無効な情報でコース登録を行うと料理登録失敗のフラッシュが表示されること" do
+      it "無効な情報でコース登録を行うとコース登録失敗のフラッシュが表示されること" do
         fill_in "コース名", with: ""
         fill_in "説明", with: "四季折々の風景が楽しめるコースとなっております"
         fill_in "コツ・ポイント", with: "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています"
