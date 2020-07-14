@@ -18,7 +18,7 @@ jobs:
             POSTGRES_HOST_AUTH_METHOD: trust
             POSTGRES_DB: portfolio_test
       #自身のアプリ名にする
-      working_directory: ~/Portfolio
+      working_directory: ~/Enjoy_golf
       steps:
         - checkout
         #bundle キャッシュをリストアする。公式の設定通り。
@@ -26,14 +26,14 @@ jobs:
             keys:
               - v1-dependencies-{{ checksum "Gemfile.lock" }}
               - v1-dependencies-
-        # bundle install で依存関係をインストールする。公式の設定と多少異なってます。
+        # bundle install で依存関係をインストールする。
         - run:
             name: install dependencies
             command: |
               gem install bundler -v 2.1.4
               bundle install --jobs=4 --retry=3 --path vendor/bundle
 
-        # bundle キャッシュを保存する。公式の設定通り。
+        # bundle キャッシュを保存する。
         - save_cache:
             key: v1-dependencies-{{ checksum "Gemfile.lock" }}
             paths:
