@@ -10,7 +10,7 @@ default: &default
 development:
   <<: *default
   database: myapp_deveropment
-  host: localhost
+  host: db
   port: 5432
 
 test:
