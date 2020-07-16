@@ -53,7 +53,7 @@ RSpec.describe "コース登録", type: :request do
         post courses_path, params: {
           course: {
             name: "",
-            description: "冬に食べたくなる、身体が温まる料理です",
+            description: "冬に食べたくなる、身体が温まるコースです",
             tips: "ピリッと辛めに味付けするのがオススメ",
             reference: "https://cookpad.com/recipe/2798655",
             score: 100,

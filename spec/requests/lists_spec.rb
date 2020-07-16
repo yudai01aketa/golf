@@ -30,7 +30,7 @@ RSpec.describe "リスト登録機能", type: :request do
         login_for_request(user)
       end
 
-      it "料理のリスト登録/解除ができること" do
+      it "コースのリスト登録/解除ができること" do
         expect {
           post "/lists/#{course.id}/create"
         }.to change(other_user.lists, :count).by(1)
@@ -39,7 +39,7 @@ RSpec.describe "リスト登録機能", type: :request do
         }.to change(other_user.lists, :count).by(-1)
       end
 
-      it "料理のAjaxによるリスト登録/解除ができること" do
+      it "コースのAjaxによるリスト登録/解除ができること" do
         expect {
           post "/lists/#{course.id}/create", xhr: true
         }.to change(other_user.lists, :count).by(1)

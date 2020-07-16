@@ -78,14 +78,6 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content 'メールアドレスは不正な値です'
         expect(user.reload.email).not_to eq ""
       end
-
-      context "アカウント削除処理", js: true do
-        it "正しく削除できること" do
-          click_link "アカウントを削除する"
-          page.driver.browser.switch_to.alert.accept
-          expect(page).to have_content "自分のアカウントを削除しました"
-        end
-      end
     end
 
     describe "プロフィールページ" do
@@ -126,18 +118,6 @@ RSpec.describe "Users", type: :system do
           end
         end
 
-        context "ユーザーのフォロー/アンフォロー処理", js: true do
-          it "ユーザーのフォロー/アンフォローができること" do
-            login_for_system(user)
-            visit user_path(other_user)
-            expect(page).to have_button 'フォローする'
-            click_button 'フォローする'
-            expect(page).to have_button 'フォロー中'
-            click_button 'フォロー中'
-            expect(page).to have_button 'フォローする'
-          end
-        end
-
         context "お気に入り登録/解除" do
           before do
             login_for_system(user)
@@ -149,18 +129,6 @@ RSpec.describe "Users", type: :system do
             expect(user.favorite?(course)).to be_truthy
             user.unfavorite(course)
             expect(user.favorite?(course)).to be_falsey
-          end
-
-          it "コース個別ページからお気に入り登録/解除ができること", js: true do
-            visit course_path(course)
-            link = find('.like')
-            expect(link[:href]).to include "/favorites/#{course.id}/create"
-            link.click
-            link = find('.unlike')
-            expect(link[:href]).to include "/favorites/#{course.id}/destroy"
-            link.click
-            link = find('.like')
-            expect(link[:href]).to include "/favorites/#{course.id}/create"
           end
         end
 

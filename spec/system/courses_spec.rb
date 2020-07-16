@@ -44,7 +44,7 @@ RSpec.describe "Courses", type: :system do
         expect(page).to have_content "コースが登録されました！"
       end
 
-      it "無効な情報でコース登録を行うと料理登録失敗のフラッシュが表示されること" do
+      it "無効な情報でコース登録を行うとコース登録失敗のフラッシュが表示されること" do
         fill_in "コース名", with: ""
         fill_in "説明", with: "四季折々の風景が楽しめるコースとなっております"
         fill_in "コツ・ポイント", with: "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています"
@@ -71,18 +71,6 @@ RSpec.describe "Courses", type: :system do
         expect(page).to have_content course.name
         expect(page).to have_content course.tips
         expect(page).to have_content course.score
-      end
-
-      context "コースの削除", js: true do
-        it "削除成功のフラッシュが表示されること" do
-          login_for_system(user)
-          visit course_path(course)
-          within find('.change-course') do
-            click_on '削除'
-          end
-          page.driver.browser.switch_to.alert.accept
-          expect(page).to have_content 'コースが削除されました'
-        end
       end
     end
   end
@@ -130,14 +118,6 @@ RSpec.describe "Courses", type: :system do
         click_button "更新する"
         expect(page).to have_content 'コース名を入力してください'
         expect(course.reload.name).not_to eq ""
-      end
-
-      context "コースの削除処理", js: true do
-        it "削除成功のフラッシュが表示されること" do
-          click_on '削除'
-          page.driver.browser.switch_to.alert.accept
-          expect(page).to have_content 'コースが削除されました'
-        end
       end
     end
 
