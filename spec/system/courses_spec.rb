@@ -13,10 +13,6 @@ RSpec.describe "Courses", type: :system do
     end
 
     context "ページレイアウト" do
-      it "「コース登録」の文字列が存在すること" do
-        expect(page).to have_content 'コース登録'
-      end
-
       it "正しいタイトルが表示されること" do
         expect(page).to have_title full_title('コース登録')
       end

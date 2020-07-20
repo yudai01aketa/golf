@@ -2,6 +2,7 @@
 <li id="comment-<%= comment.id %>">
   <div class="row">
     <div class="col-md-2">
+      <span><%= image_tag comment_user.image_url, class: 'user-image', size: 30 %></span>
       <span class="user"><%= link_to comment_user.name, comment_user %></span>
     </div>
     <div class="col-md-8">

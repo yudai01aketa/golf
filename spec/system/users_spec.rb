@@ -13,10 +13,6 @@ RSpec.describe "Users", type: :system do
     end
 
     context "ページレイアウト" do
-      it "「ユーザー登録」の文字列が存在することを確認" do
-        expect(page).to have_content 'ユーザー登録'
-      end
-
       it "正しいタイトルが表示されることを確認" do
         expect(page).to have_title full_title('ユーザー登録')
       end
@@ -141,11 +137,11 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_css ".favorite-course", count: 2
           expect(page).to have_content course.name
           expect(page).to have_content course.description
-          expect(page).to have_content "cooked by #{user.name}"
+          expect(page).to have_content "round by #{user.name}"
           expect(page).to have_link user.name, href: user_path(user)
           expect(page).to have_content other_course.name
           expect(page).to have_content other_course.description
-          expect(page).to have_content "cooked by #{other_user.name}"
+          expect(page).to have_content "round by #{other_user.name}"
           expect(page).to have_link other_user.name, href: user_path(other_user)
           user.unfavorite(other_course)
           visit favorites_path

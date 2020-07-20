@@ -1,5 +1,6 @@
 <% if @feed_items.any? %>
   <ol class="courses">
+    <h3>みんなのコース (<%= @feed_items.count %>)</h3>
     <%= render @feed_items %>
   </ol>
   <%= will_paginate @feed_items %>

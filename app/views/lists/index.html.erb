@@ -1,11 +1,11 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h3>　行く予定リスト (<%= @lists.count %>)</h3>
-    </div>
-  </div>
   <% if @lists.present? %>
-    <ol class="lists">
+    <ol class="lists background-style">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>　行く予定リスト (<%= @lists.count %>)</h3>
+        </div>
+      </div>
       <%= render @lists %>
     </ol>
   <% end %>

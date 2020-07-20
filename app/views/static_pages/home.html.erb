@@ -1,24 +1,26 @@
 <% if logged_in? %>
   <div class="container">
-    <div class="row">
-      <div class="col-md-9">
-        <h3>みんなのコース (<%= @feed_items.count %>)</h3>
-        <%= render 'layouts/search' if logged_in? %>
-        <%= render 'shared/feed' %>
-      </div>
-      <div class="col-md-3">
-        <p><%= link_to "コースを登録する", new_course_path, class: "btn btn-primary btn-lg btn-record" %></p>
-      </div>
-    </div>
-  </div>
+    <p><%= link_to "コースを登録する", new_course_path, class: "btn btn-primary btn-lg btn-record" %></p>
+    <%= render 'layouts/search' if logged_in? %>
+    <%= render 'shared/feed' %>
+ </div>
 <% else %>
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-      <h2>Enjoy Golf へようこそ!</h2>
-      <p>オススメのコースをみんなにシェアしませんか？</p>
-      <p>
-        <%= link_to 'Enjoy Golfを始めよう', signup_path, class: "btn btn-primary btn-lg btn-demo" %>
-      </p>
+  <div class="row landnng-page">
+    <div class="gtco-cover gtco-cover-sm" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="gtco-container text-center">
+        <div class="display-t">
+          <div class="display-tc">
+            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+              <h1>Enjoy Golf へようこそ!</h1>
+              <p>オススメのコースをみんなにシェアしませんか？</p>
+              <p>
+                <%= link_to 'Enjoy Golfを始めよう', signup_path, class: "btn btn-primary btn-lg btn-demo", id: "btn-lannding-page" %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>
