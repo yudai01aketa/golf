@@ -61,7 +61,7 @@ h2 {
       display: none;
    }
    .sp-nav {
-      z-index: 1;
+      z-index: 2;
       position: fixed;
       top: 0;
       left: 0;
@@ -134,6 +134,7 @@ h2 {
    /*-閉じるアイコンー*/
    .sp-nav .close {
       position: relative;
+      color: white;
    }
    .sp-nav .close::before {
       content: '';
@@ -616,5 +617,9 @@ a.list, a.unlist {
 }
 
 #btn-lannding-page {
+  color: white;
+}
+
+.nothing-list {
   color: white;
 }
