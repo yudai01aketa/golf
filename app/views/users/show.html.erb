@@ -13,12 +13,12 @@
           <%= @user.introduction %>
         </div>
         <section class="stats">
-          <%= render 'shared/stats' %>
+          <%= render 'shared/stats', user: @user %>
         </section>
         <% if current_user == @user %>
           <div class="account-edit"><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
         <% end %>
-        <%= render 'follow_form' if logged_in? %>
+        <%= render 'follow_form', user: @user if logged_in? %>
       </div>
     </div>
     <div><h3>コース (<%= @user.courses.count %>)</h3></div>
@@ -41,4 +41,25 @@
     </div>
   </ol>
   <%= will_paginate @courses %>
+<% else %>
+  <div class="row  background-style">
+    <div class="col-md-4">
+      <div class="user-picture-box">
+        <%= image_tag @user.image.url, class: 'user-image', size: 100  %>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h4 class="show-user-name"><%= @user.name %></h4>　<%= @user.sex %>
+      <div>
+        <%= @user.introduction %>
+      </div>
+      <section class="stats">
+        <%= render 'shared/stats', user: @user %>
+      </section>
+      <% if current_user == @user %>
+        <div class="account-edit"><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
+      <% end %>
+      <%= render 'follow_form', user: @user if logged_in? %>
+    </div>
+  </div>
 <% end %>

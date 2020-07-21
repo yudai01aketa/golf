@@ -8,8 +8,8 @@
         <span class="picture">
           <%= link_to((image_tag @course.picture.thumb400.url), course_path(@course.id), class: 'course-picture') if @course.picture.url.present? %>
         </span>
-        <%= render 'users/favorite_form' %>
-        <%= render 'users/list_form' %>
+        <%= render 'users/favorite_form', course: @course %>
+        <%= render 'users/list_form', course: @course %>
       </div>
       <div class="col-md-8">
         <h2 class="course-name"><%= @course.name %></h2>　　
@@ -49,12 +49,12 @@
       <div class="log-comment">
         <% if current_user == @course.user %>
           <div class="log">
-            <%= render "logs/feed_logs" %>
+            <%= render "logs/feed_logs", logs: @logs %>
             <%= render "logs/new" %>
           </div>
         <% end %>
         <div class="comment">
-          <%= render "comments/feed_comments" %>
+          <%= render "comments/feed_comments", course: @course, comments: @comments %>
           <%= render "comments/new" %>
         </div>
       </div>
@@ -62,4 +62,4 @@
   </div>
 </div>
 
-<%= render 'map' %>
+<%= render 'map', courses: @courses %>

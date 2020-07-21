@@ -3,7 +3,7 @@
   <h1>ユーザー一覧</h1>
   <%= will_paginate %>
   <ul class="users background-style">
-    <%= render 'users' %>
+    <%= render 'users', users: @users %>
   </ul>
   <%= will_paginate %>
 </div>

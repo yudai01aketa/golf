@@ -7,15 +7,15 @@
   var marker;
   var infoWindow;
   var center = {
-    lat: <%= @courses.latitude %>, // 緯度
-    lng: <%= @courses.longitude %> // 経度
+    lat: <%= courses.latitude %>, // 緯度
+    lng: <%= courses.longitude %> // 経度
   };
   function initMap(){
 
     //初期表示位置
-    var latlng = new google.maps.LatLng({lat: <%= @courses.latitude %>, lng: <%= @courses.longitude %>});
+    var latlng = new google.maps.LatLng({lat: <%= courses.latitude %>, lng: <%= courses.longitude %>});
     let map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: <%= @courses.latitude %>, lng: <%= @courses.longitude %>},
+    center: {lat: <%= courses.latitude %>, lng: <%= courses.longitude %>},
     zoom: 10
     });
 
@@ -25,7 +25,7 @@
     });
 
     infoWindow = new google.maps.InfoWindow({ // 吹き出しの追加
-         content: '<%= link_to "#{@courses.golf_course_name}", "#{@courses.golf_course_detail_url}" %>' // 吹き出しに表示する内容
+         content: '<%= link_to "#{courses.golf_course_name}", "#{courses.golf_course_detail_url}" %>' // 吹き出しに表示する内容
     });
 
     marker.addListener('click', function() { // マーカーをクリックしたとき
