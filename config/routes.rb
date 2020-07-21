@@ -7,12 +7,12 @@ Rails.application.routes.draw do
   post   :login,        to: 'sessions#create'
   delete :logout,       to: 'sessions#destroy'
   get    :favorites,    to: 'favorites#index'
-  post   "favorites/:course_id/create" => "favorites#create"
-  delete "favorites/:course_id/destroy" => "favorites#destroy"
-  get    :lists, to: 'lists#index'
-  post   "lists/:course_id/create" => "lists#create"
-  delete "lists/:list_id/destroy"  => "lists#destroy"
-  get    'search' => 'courses#search'
+  post   "favorites/:course_id/create", to: "favorites#create"
+  delete "favorites/:course_id/destroy", to: "favorites#destroy"
+  get    :lists,        to: 'lists#index'
+  post   "lists/:course_id/create", to: "lists#create"
+  delete "lists/:list_id/destroy", to: "lists#destroy"
+  get    'search', to: 'courses#search'
   post   '/users/guest_sign_in', to: 'sessions#new_guest'
 
   resources :users do

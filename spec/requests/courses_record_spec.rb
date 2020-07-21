@@ -37,7 +37,6 @@ RSpec.describe "コース登録", type: :request do
             name: "大神戸ゴルフ場",
             description: "四季折々の風景が楽しめるコースとなっております",
             tips: "バンカーが多くて難しい場面もありますが、OBが出にくいコースとなっています",
-            reference: "https://cookpad.com/recipe/2798655",
             score: 100,
             recommend: 5,
             picture: picture
@@ -55,7 +54,6 @@ RSpec.describe "コース登録", type: :request do
             name: "",
             description: "冬に食べたくなる、身体が温まるコースです",
             tips: "ピリッと辛めに味付けするのがオススメ",
-            reference: "https://cookpad.com/recipe/2798655",
             score: 100,
             recommend: 5,
             picture: picture

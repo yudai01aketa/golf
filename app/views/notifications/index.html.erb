@@ -1,12 +1,14 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h3>　通知一覧</h3>
-    </div>
-  </div>
   <% if @notifications.present? %>
     <ol class="notifications">
+      <div class="row background-style">
+        <div class="col-md-12">
+          <h3>　通知一覧</h3>
+        </div>
+      </div>
       <%= render @notifications %>
     </ol>
+  <% else %>
+    <h3 class="nothing-list">通知はありません</h3>
   <% end %>
 </div>

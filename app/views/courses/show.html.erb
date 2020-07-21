@@ -1,7 +1,7 @@
 <% provide(:title, "#{@course.name}") %>
 <% @comments  = @course.feed_comment(@course.id) %>
 <% @logs  = @course.feed_log(@course.id) %>
-<div id="fh5co-portfolio background-image">
+<div class="background-style" id="fh5co-portfolio">
   <div class="container">
     <div class="row">
       <div class="col-md-4">
@@ -22,9 +22,9 @@
                                           data: { confirm: "本当に削除しますか？" } %>
           <% end %>
         </div>
-        <h4>コース説明：<%= @courses.golf_course_caption if !@courses.nil? %></h4>
-        <h4 class="course-reference">コース詳細：<%= link_to "#{@courses.golf_course_name}", @courses.golf_course_detail_url, target: "_blank" %></h4>
-        <h4 class="course-reference">住所：<%= @courses.address %></h4>
+        <h4 class="course-info">コース説明：<%= @courses.golf_course_caption if !@courses.nil? %></h4>
+        <h4 class="course-info">コース詳細：<%= link_to "#{@courses.golf_course_name}", @courses.golf_course_detail_url, target: "_blank" %></h4>
+        <h4 class="course-info">住所：<%= @courses.address %></h4>
         <div class="tips">
           <h5 class="title-tips">コツ・ポイント</h5>
           <h5><%= @course.tips %></h5>
@@ -45,6 +45,8 @@
             </h4>
           </div>
         </div>
+      </div>
+      <div class="log-comment">
         <% if current_user == @course.user %>
           <div class="log">
             <%= render "logs/feed_logs" %>

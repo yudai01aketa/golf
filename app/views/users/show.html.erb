@@ -1,29 +1,26 @@
 <% provide(:title, "プロフィール") %>
-
-<h3 class="title-profile">プロフィール</h3>
-<div class="row">
-  <div class="col-md-4">
-    <div class="user-picture-box">
-      <%= image_tag @user.image.url, class: 'user-image', size: 100  %>
-    </div>
-  </div>
-  <div class="col-md-8">
-    <h4 class="show-user-name"><%= @user.name %></h4>　<%= @user.sex %>
-    <div>
-      <%= @user.introduction %>
-    </div>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-    </section>
-    <% if current_user == @user %>
-      <div class="account-edit"><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
-    <% end %>
-    <%= render 'follow_form' if logged_in? %>
-  </div>
-</div>
-
 <% if @user.courses.any? %>
   <ol class="courses">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="user-picture-box">
+          <%= image_tag @user.image.url, class: 'user-image', size: 100  %>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <h4 class="show-user-name"><%= @user.name %></h4>　<%= @user.sex %>
+        <div>
+          <%= @user.introduction %>
+        </div>
+        <section class="stats">
+          <%= render 'shared/stats' %>
+        </section>
+        <% if current_user == @user %>
+          <div class="account-edit"><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
+        <% end %>
+        <%= render 'follow_form' if logged_in? %>
+      </div>
+    </div>
     <div><h3>コース (<%= @user.courses.count %>)</h3></div>
     <div class="row">
       <% @courses.each do |course| %>

@@ -25,6 +25,7 @@
          <% else %>
            <li><%= link_to ' Enjoy Golfとは？', about_path, class: "fas fa-question-circle" %></li>
            <li><%= link_to 'ユーザー登録(無料)', signup_path, class: "fas fa-user-plus" %></li>
+           <li><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "" %><li>
            <li class="header-link"><%= link_to 'ログイン', login_path %></li>
          <% end %>
 

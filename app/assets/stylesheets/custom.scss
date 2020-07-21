@@ -61,7 +61,7 @@ h2 {
       display: none;
    }
    .sp-nav {
-      z-index: 1;
+      z-index: 2;
       position: fixed;
       top: 0;
       left: 0;
@@ -134,6 +134,7 @@ h2 {
    /*-閉じるアイコンー*/
    .sp-nav .close {
       position: relative;
+      color: white;
    }
    .sp-nav .close::before {
       content: '';
@@ -251,6 +252,8 @@ input {
 
 .show-user-name {
   display: inline-block;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .account-edit {
@@ -275,7 +278,8 @@ input {
 // コース(Course) //
 .courses {
   list-style: none;
-  padding: 0;
+  padding: 20px;
+  background-color: white;
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
@@ -296,11 +300,6 @@ input {
     color: $gray-light;
     display: block;
     margin-left: 60px;
-  }
-  .gravatar {
-    float: left;
-    margin-right: 10px;
-    margin-top: 5px;
   }
   .fh5co-text h2 {
     margin-top: 15px;
@@ -350,8 +349,9 @@ h2.course-name {
   display: inline-block;
 }
 
-.course-reference {
+.course-info {
   margin-top: 30px;
+  width: 80%;
 }
 
 .tips {
@@ -390,6 +390,10 @@ h2.course-name {
   }
 }
 
+.log-comment {
+  width: 80%;
+}
+
 .title-comment {
   font-weight: bold;
   font-size: 17px;
@@ -409,6 +413,15 @@ h2.course-name {
 
 .comment-create-at {
   color: grey;
+}
+
+.course-map {
+  margin-top: 30px;
+  padding: 10px;
+  background-color: #09C6AB;
+  border-radius: 10px 10px 0 0;
+  color: white;
+  text-align: center;
 }
 
 // コース一覧
@@ -439,7 +452,7 @@ h3.course-name {
 }
 
 // ログ
-.add-cooklog {
+.add-courselog {
  font-weight: bold;
 }
 ///コースログ///
@@ -474,6 +487,11 @@ h3.course-name {
   font-size: 15px;
 }
 
+///コース登録フォーム///
+.background-style {
+  background-color: white;
+  padding: 30px;
+}
 /// 画像のサイズ ///
 .course-picture img {
   max-width: 100%;
@@ -484,6 +502,11 @@ h3.course-name {
 /// フォロー、フォロワー数表示部 ///
 .stats {
   margin: 5px 0;
+}
+
+.show-follow {
+  background-color: white;
+  padding: 30px;
 }
 
 // お気に入り
@@ -565,4 +588,38 @@ a.list, a.unlist {
 
 .user-image {
   border-radius: 50%;
+}
+
+.bgimage {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+.bgimage:after {
+  content: "";
+  background-image: image-url("course_background.jpg");
+  background-position: center;
+  background-size:cover;
+  opacity: 0.7;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.landnng-page {
+  p {
+    margin-top: 20px;
+    color: white;
+  }
+}
+
+#btn-lannding-page {
+  color: white;
+}
+
+.nothing-list {
+  color: white;
 }

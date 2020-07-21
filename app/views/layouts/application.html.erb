@@ -9,7 +9,7 @@
     <div id="page">
       <%= render 'layouts/navigation' %>
       <%= render 'layouts/sp_navigation' %>
-      <div class="gtco-section back">
+      <div class="gtco-section bgimage">
         <div class="gtco-container">
           <% flash.each do |message_type, message| %>
             <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
@@ -23,6 +23,5 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>
