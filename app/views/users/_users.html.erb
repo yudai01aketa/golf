@@ -1,4 +1,4 @@
-<% @users.each do |user| %>
+<% users.each do |user| %>
   <li>
     <%= image_tag user.image.url, class: 'user-image', size: 50  %>
     <%= link_to user.name, user %>

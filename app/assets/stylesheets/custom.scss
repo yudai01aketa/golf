@@ -623,3 +623,7 @@ a.list, a.unlist {
 .nothing-list {
   color: white;
 }
+
+.dropdown:hover > .dropdown-menu{
+  display: block;
+}

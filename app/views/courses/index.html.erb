@@ -6,6 +6,6 @@
   <h3>コース一覧</h3>
 <% end %>
 <ul class="courses">
-  <%= render @courses %>
+  <%= render @courses, course: @course %>
 </ul>
 <%= will_paginate %>

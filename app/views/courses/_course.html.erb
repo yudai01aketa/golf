@@ -16,7 +16,7 @@
         <span class="course_times">ラウンド回数：<%= course.logs.count %>回　</span>
         <span class="score">ベストスコア：<%= course.score %>　</span>
         <span class="recommend">オススメ度：
-          <% if @course.recommend.present? %>
+          <% if course.recommend.present? %>
             <%= "★" * course.recommend %><%= "☆" * (5 - course.recommend) %>
           <% end %>
         </span>
