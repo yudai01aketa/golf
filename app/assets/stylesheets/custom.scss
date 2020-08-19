@@ -627,3 +627,19 @@ a.list, a.unlist {
 .dropdown:hover > .dropdown-menu{
   display: block;
 }
+
+.rate {
+  display: inline-block;
+  text-align: left;
+  background-color: #ffa300;
+  font-size: 16px;
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+#bodyContent {
+  padding-top: 15px;
+}
