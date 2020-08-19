@@ -84,7 +84,7 @@ class User < ApplicationRecord
 
   # 現在のユーザーがフォローされていたらtrueを返す
   def followed_by?(other_user)
-    followers.exists?(other_user)
+    followers.include?(other_user)
   end
 
   # コースをお気に入りに登録する
