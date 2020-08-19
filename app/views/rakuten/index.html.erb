@@ -1,0 +1,7 @@
+<%= form_tag :rakuten_search, method: :get, remote: true do %>
+  <%= label_tag :keyword, ''%>
+  <%= text_field_tag 'keyword', params[:keyword], class: 'form-control', placeholder: "地名やコース名のキーワードを入力してください" %>
+  <%= submit_tag('検索結果を表示' , class: 'btn btn-primary') %>
+<% end %>
+
+<div id="Rakuten_courses"></div>

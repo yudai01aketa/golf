@@ -99,7 +99,7 @@ class User < ApplicationRecord
 
   # 現在のユーザーがお気に入り登録してたらtrueを返す
   def favorite?(course)
-    !Favorite.find_by(user_id: id, course_id: course.id).nil?
+    Favorite.exists?(user_id: id, course_id: course.id)
   end
 
   # コースをリストに登録する
@@ -114,7 +114,7 @@ class User < ApplicationRecord
 
   # 現在のユーザーがリスト登録してたらtrueを返す
   def list?(course)
-    !List.find_by(course_id: course.id, from_user_id: id).nil?
+    List.exists?(course_id: course.id, from_user_id: id)
   end
 
   def self.guest
