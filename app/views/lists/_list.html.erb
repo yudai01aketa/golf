@@ -5,9 +5,9 @@
   <div class="list-course">
     <p><%= list.created_at.strftime("%Y/%m/%d(%a) %H:%M") %> </p>
     <% if list.user_id == list.from_user_id %>
-      <p class="list-message">このコースに行ってみたいに追加しました。</p>
+      <p class="list-message">このコースをブックマークに追加しました。</p>
     <% else %>
-      <p class="list-message"><%= link_to user.name, user_path(user) %>さんがこのコースに行ってみたいリクエストをしました。</p>
+      <p class="list-message"><%= link_to user.name, user_path(user) %>さんがこのコースをブックマークしました。</p>
     <% end %>
   </div>
   <div class="row">

@@ -3,8 +3,8 @@
             class: 'list',
             remote: true do %>
   <% if current_user == @course.user %>
-    <div class="list-btn-list"><i class="fas fa-list-alt"></i> 行く予定リストに追加する</div>
+    <div class="list-btn-list"><i class="fas fa-list-alt"></i> ブックマークに追加する</div>
   <% else %>
-    <div class="list-btn-list"><i class="fas fa-utensils"></i> 行ってみたいリクエストを送る</div>
+    <div class="list-btn-list"><i class="fas fa-utensils"></i> ブックマークに追加する</div>
   <% end %>
 <% end %>

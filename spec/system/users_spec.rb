@@ -222,12 +222,12 @@ RSpec.describe "Users", type: :system do
     end
   end
 
-  context "リスト登録/解除" do
+  context "ブックマーク登録/解除" do
     before do
       login_for_system(user)
     end
 
-    it "コースのリスト登録/解除ができること" do
+    it "コースのブックマーク登録/解除ができること" do
       expect(user.list?(course)).to be_falsey
       user.list(course)
       expect(user.list?(course)).to be_truthy
@@ -235,7 +235,7 @@ RSpec.describe "Users", type: :system do
       expect(user.list?(course)).to be_falsey
     end
 
-    it "リスト一覧ページが期待通り表示され、リストから削除することもできること" do
+    it "ブックマーク一覧ページが期待通り表示され、ブックマークから削除することもできること" do
       visit lists_path
       expect(page).not_to have_css ".list-course"
       user.list(course)
@@ -245,11 +245,10 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_css ".list-course", count: 2
       expect(page).to have_content course.name
       expect(page).to have_content List.last.created_at.strftime("%Y/%m/%d(%a) %H:%M")
-      expect(page).to have_content "このコースに行ってみたいに追加しました。"
+      expect(page).to have_content "このコースをブックマークに追加しました。"
       expect(page).to have_content course_2.name
-      expect(page).to have_content course_2.description
       expect(page).to have_content List.first.created_at.strftime("%Y/%m/%d(%a) %H:%M")
-      expect(page).to have_content "#{other_user.name}さんがこのコースに行ってみたいリクエストをしました。"
+      expect(page).to have_content "#{other_user.name}さんがこのコースをブックマークしました。"
       expect(page).to have_link other_user.name, href: user_path(other_user)
       user.unlist(List.first)
       visit lists_path
