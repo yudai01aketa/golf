@@ -3,12 +3,12 @@
     <ol class="lists background-style">
       <div class="row">
         <div class="col-md-12">
-          <h3>　行く予定リスト (<%= @lists.count %>)</h3>
+          <h3>　ブックマーク一覧 (<%= @lists.count %>)</h3>
         </div>
       </div>
       <%= render @lists %>
     </ol>
   <% else %>
-    <h3 class="nothing-list">リストはありません</h3>
+    <h3 class="nothing-list">ブックマークはありません</h3>
   <% end %>
 </div>
