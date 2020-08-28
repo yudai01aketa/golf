@@ -4,8 +4,8 @@
             class: 'unlist',
             remote: true do %>
   <% if current_user == @course.user %>
-    <div class="list-btn-unlist"><i class="fas fa-list-alt"></i> 行くリストに追加済み</div>
+    <div class="list-btn-unlist"><i class="fas fa-list-alt"></i> ブックマーク済み</div>
   <% else %>
-    <div class="list-btn-unlist"><i class="fas fa-utensils"></i> 行ってみたいリクエスト済み</div>
+    <div class="list-btn-unlist"><i class="fas fa-utensils"></i> ブックマーク済み</div>
   <% end %>
 <% end %>
