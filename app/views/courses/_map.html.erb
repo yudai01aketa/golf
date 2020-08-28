@@ -25,7 +25,18 @@
     });
 
     infoWindow = new google.maps.InfoWindow({ // 吹き出しの追加
-         content: '<%= link_to "#{courses.golf_course_name}", "#{courses.golf_course_detail_url}" %>' // 吹き出しに表示する内容
+      '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading"><%= link_to "#{course.golf_course_name}", "#{course.golf_course_detail_url}" %></h1>'+
+        '<div id="bodyContent">'+
+          '<p>住所 ：<%= course.address %></p>'+
+          '<p>評価 ：<span class="rate"><%= course.evaluation.to_f %></span></p>'+
+          '<p><%= link_to "Googleマップで見る" ,"https://maps.google.co.jp/maps?q=loc:#{course.latitude},#{course.longitude}&iwloc=J",target: "_blank" %></p>'+
+          '<img src="<%= course.golf_course_image_url %>">'+
+
+        '</div>'+
+      '</div>';
     });
 
     marker.addListener('click', function() { // マーカーをクリックしたとき
