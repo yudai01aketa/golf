@@ -22,7 +22,12 @@
                                           data: { confirm: "本当に削除しますか？" } %>
           <% end %>
         </div>
-        <h4 class="course-info">コース説明：<%= @courses.golf_course_caption if !@courses.nil? %></h4>
+        <div class="text-wrap">
+          <h4 class="course-info text">コース説明：
+            <%= @courses.golf_course_caption if !@courses.nil? %>
+          </h4>
+          <p class="readmore-btn"><a href="">続きを読む</a></p>
+        </div>
         <h4 class="course-info">コース詳細：<%= link_to "#{@courses.golf_course_name}", @courses.golf_course_detail_url, target: "_blank" %></h4>
         <h4 class="course-info">住所：<%= @courses.address %></h4>
         <div class="tips">

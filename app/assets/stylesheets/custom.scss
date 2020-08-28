@@ -349,11 +349,6 @@ h2.course-name {
   display: inline-block;
 }
 
-.course-info {
-  margin-top: 30px;
-  width: 80%;
-}
-
 .tips {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -495,7 +490,7 @@ h3.course-name {
 /// 画像のサイズ ///
 .course-picture img {
   max-width: 100%;
-  height: auto;
+  height: 300px;
   box-sizing: border-box;
 }
 
@@ -642,4 +637,52 @@ a.list, a.unlist {
 
 #bodyContent {
   padding-top: 15px;
+}
+
+#new_course_btn {
+  position: fixed;
+  z-index: 2;
+  bottom: 30px;
+  right: 30px;
+  display: inline-block;
+  text-decoration: none;
+  background: #87befd;
+  color: #FFF;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  transition: .4s;
+
+  &:hover {
+    background: #668ad8;
+  }
+}
+
+
+@media only screen and (min-width: 640px) {
+  .text-wrap {
+    width: 600px;
+  }
+}
+
+.text-wrap {
+  background-color: #fff;
+  height: auto;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  border: solid 1px;
+}
+
+.text {
+  line-height: 24px;
+  overflow: hidden;
+}
+.readmore-btn {
+  text-align: right;
+  display: none;
 }
