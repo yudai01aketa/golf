@@ -1,8 +1,15 @@
-<%= form_tag :search, method: :get, remote: true do %>
-  <%= label_tag :keyword, 'コースの正式名称をキーワード検索'%>
-  <%= text_field_tag 'keyword', params[:keyword], class: 'form-control', placeholder: "例) 神戸、 東京、 〇〇クラブ" %>
-  <%= submit_tag('検索結果を表示' , class: 'btn btn-primary') %>
-<% end %>
+<div class="row">
+  <div class = 'form-group'>
+    <%= form_tag :search, method: :get, remote: true do %>
+      <div class="col-md-9">
+        <%= text_field_tag 'keyword', params[:keyword], class: 'form-control', placeholder: "コースの正式名称をキーワード検索" %>
+      </div>
+      <div class="col-md-3">
+        <%= submit_tag('表示' , class: 'btn btn-primary') %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <div id="Course_name"></div>
 
@@ -11,7 +18,7 @@
 
   <div class = 'form-group'>
     <%= f.label :name %>　<span class="input-need">※必須</span>
-    <%= f.text_field :name, class: 'form-control', id: 'course_name' %>
+    <%= f.text_field :name, class: 'form-control', id: 'course_name', placeholder: "上記の検索フォームで正式名称を検索、コピペで入力して下さい" %>
   </div>
 
   <span class="picture">
