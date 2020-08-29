@@ -16,14 +16,13 @@
     </div>
     <div class="col-md-7">
       <p><%= link_to @course.name, course_path(@course) %></p>
-      <p class="list-course-description"><%= @course.description %></p>
       <%= render "logs/new_form_mini" %>
     </div>
     <div class="col-md-3">
       <%= link_to "リストから削除", "/lists/#{list.id}/destroy",
                              method: :delete,
                              class: "unlist",
-                             data: { confirm: "本当にリストから削除しますか？" } %>
+                             data: { confirm: "本当にブックマークから削除しますか？" } %>
     </div>
   </div>
 </li>
