@@ -58,4 +58,5 @@ gem 'ransack'
 group :production do # 本番環境
   gem 'pg' # PostgreSQL
   gem 'fog', '1.42'
+  gem 'unicorn', '5.4.1'
 end
