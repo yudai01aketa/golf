@@ -1,52 +1,67 @@
 version: 2
 jobs:
-   build:
-      docker:
-        #アプリのバージョンを指定
-        - image: circleci/ruby:2.6.3-node
-          environment:
-            #自身の登録しているユーザに変える。
-            POSTGRES_USER: postgres
-            PGHOST: 127.0.0.1
-            RAILS_ENV: test
-        #使ってるデータベースとバージョンを指定する。# 「host: localhost」でアクセスできるサービスコンテナイメージ。
-        - image: circleci/postgres:9.6
-          environment:
-            #それぞれ設定
-            POSTGRES_USER: postgres
-            #下記を書けばパスワードなしでデータベースにログインしてくれる。
-            POSTGRES_HOST_AUTH_METHOD: trust
-            POSTGRES_DB: portfolio_test
-      #自身のアプリ名にする
-      working_directory: ~/Portfolio
-      steps:
-        - checkout
-        #bundle キャッシュをリストアする。公式の設定通り。
-        - restore_cache:
-            keys:
-              - v1-dependencies-{{ checksum "Gemfile.lock" }}
-              - v1-dependencies-
-        # bundle install で依存関係をインストールする。公式の設定と多少異なってます。
-        - run:
-            name: install dependencies
-            command: |
-              gem install bundler -v 2.1.4
-              bundle install --jobs=4 --retry=3 --path vendor/bundle
-        # bundle キャッシュを保存する。公式の設定通り。
-        - save_cache:
-            key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-            paths:
-              - ./vendor/bundle
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.6.3-node-browsers
+        environment:
+          RAILS_ENV: test
+          DB_HOST: 127.0.0.1
+          DB_USERNAME: 'root'
+          DB_PASSWORD: ''
+      - image: circleci/mysql:5.7
 
-        #↓追加する
-        - run:
-            name: DBの起動を待つ
-            command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
+    working_directory: ~/golf
 
-        - run: bundle exec rake db:create
-        - run: bundle exec rake db:schema:load
+    steps:
+      - checkout
 
-        # rspecを実行する
-        - run:
-            name: rspecを実行
-            command: bundle exec bin/rspec
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
+      # run tests!
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+
+            bundle exec rspec --format progress \
+                            --format RspecJunitFormatter \
+                            --out /tmp/test-results/rspec.xml \
+                            --format progress \
+                            $TEST_FILES
+
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+      # run rubocop
+      - run:
+          name: run rubocop
+          command: bundle exec rubocop
