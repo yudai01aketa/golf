@@ -1,15 +1,22 @@
 FROM ruby:2.6.3
 
-RUN apt-get update -qq && \
-    apt-get install -y build-essential \
-                       libpq-dev \
-                       nodejs
+ENV LANG C.UTF-8
 
-ENV APP_ROOT /golf
+ENV APP_ROOT /app
+RUN mkdir -p $APP_ROOT
 WORKDIR $APP_ROOT
 
-ADD ./Gemfile $APP_ROOT/Gemfile
-ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
+RUN echo "deb http://security.debian.org jessie/updates main" >> /etc/apt/sources.list &&\
+	curl -sL https://deb.nodesource.com/setup_10.x | bash - && apt-get update -qq \
+	&& apt-get install -y build-essential libpq-dev nodejs postgresql-client
 
+RUN apt-get install -y vim
+
+COPY Gemfile $APP_ROOT/Gemfile
+COPY Gemfile.lock $APP_ROOT/Gemfile.lock
 RUN bundle install
-ADD . $APP_ROOT
+
+COPY . $APP_ROOT
+
+EXPOSE 3000
+CMD ["rails", "server", "-b", "0.0.0.0"]

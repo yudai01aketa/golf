@@ -56,7 +56,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'ransack'
 
 group :production do # 本番環境
-  gem 'mysql2'
+  gem 'pg'
   gem 'fog', '1.42'
   gem 'unicorn', '5.4.1'
 end
