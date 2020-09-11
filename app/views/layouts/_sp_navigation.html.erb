@@ -18,19 +18,19 @@
          <li><%= link_to ' お気に入り', favorites_path ,class: "fas fa-heart"%></li>
          <li><%= link_to ' ブックマーク', lists_path, class: "fas fa-list-alt" %></li>
          <li><%= link_to ' コース一覧検索', rakuten_index_path, class: "fas fa-search-plus" %></li>
-         <li><%= link_to 'プロフィール', current_user %></li>
-         <li><%= link_to 'ユーザー一覧', users_path %></li>
-         <li><%= link_to 'Enjoy Golfとは？', about_path %></li>
-         <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+         <li><%= link_to ' プロフィール', current_user, class: "fas fa-street-view"  %></li>
+         <li><%= link_to ' ユーザー一覧', users_path, class: "fas fa-users" %></li>
+         <li><%= link_to ' Enjoy Golfとは？', about_path, class: "fas fa-question-circle" %></li>
+         <li><%= link_to ' ログアウト', logout_path, method: :delete, class: "fas fa-user-minus" %></li>
 
          <% else %>
            <li><%= link_to ' Enjoy Golfとは？', about_path, class: "fas fa-question-circle" %></li>
-           <li><%= link_to 'ユーザー登録(無料)', signup_path, class: "fas fa-user-plus" %></li>
-           <li><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "" %><li>
-           <li class="header-link"><%= link_to 'ログイン', login_path %></li>
+           <li><%= link_to ' ユーザー登録(無料)', signup_path, class: "fas fa-user-plus" %></li>
+           <li><%= link_to ' ゲストログイン', users_guest_sign_in_path, method: :post, class: "fas fa-user-circle" %><li>
+           <li><%= link_to ' ログイン', login_path, class: "fas fa-user" %></li>
          <% end %>
 
-        <li class="close"><span>閉じる</span></li>
+        <li class="close"><span class="fas fa-times"> 閉じる</span></li>
      </ul>
    </nav>
 

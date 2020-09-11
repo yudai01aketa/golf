@@ -2,7 +2,9 @@
   <div class="container">
     <p><%= link_to "コースを登録する", new_course_path, id: "new_course_btn" %></p>
     <%= render 'layouts/search' if logged_in? %>
-    <%= render 'shared/feed' %>
+    <div id="fadein">
+      <%= render 'shared/feed' %>
+    </div>
  </div>
 <% else %>
   <div class="row landnng-page">
