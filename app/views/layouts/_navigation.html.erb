@@ -26,18 +26,18 @@
                 <span class="fas fa-user-cog"></span> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to 'プロフィール', current_user %></li>
-                <li><%= link_to 'ユーザー一覧', users_path %></li>
-                <li><%= link_to 'Enjoy Golfとは？', about_path %></li>
-                <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+                <li><%= link_to ' プロフィール', current_user, class: "fas fa-street-view" %></li>
+                <li><%= link_to ' ユーザー一覧', users_path, class: "fas fa-users" %></li>
+                <li><%= link_to ' Enjoy Golfとは？', about_path, class: "fas fa-question-circle" %></li>
+                <li><%= link_to ' ログアウト', logout_path, method: :delete, class: "fas fa-user-minus" %></li>
               </ul>
             </li>
 
           <% else %>
-            <li><%= link_to ' Enjoy Golfとは？', about_path, class: "fas fa-question-circle" %></li>
-            <li><%= link_to 'ユーザー登録(無料)', signup_path, class: "fas fa-user-plus" %></li>
-            <li><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "" %><li>
-            <li class="header-link"><%= link_to 'ログイン', login_path %></li>
+            <li class="header-link"><%= link_to ' Enjoy Golfとは?', about_path, class: "fas fa-question-circle" %></li>
+            <li class="header-link"><%= link_to ' ユーザー登録', signup_path, class: "fas fa-user-plus" %></li>
+            <li class="header-link"><%= link_to ' ゲストログイン', users_guest_sign_in_path, method: :post, class: "fas fa-user-circle" %><li>
+            <li class="header-link"><%= link_to ' ログイン', login_path, class: "fas fa-user" %></li>
           <% end %>
         </ul>
       </nav>

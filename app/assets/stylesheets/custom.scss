@@ -182,10 +182,10 @@ h2 {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
   width: 100%;
   padding-top: 15px;
+}
 
-  .header-link {
-    font-size: 20px;
-  }
+.header-link {
+  font-size: 20px;
 }
 
 ///フッター///
@@ -486,7 +486,7 @@ h3.course-name {
 ///コース登録フォーム///
 .background-style {
   background-color: white;
-  padding: 30px;
+  padding: 50px;
   border-radius: 20px;
 }
 /// 画像のサイズ ///
@@ -689,10 +689,29 @@ a.list, a.unlist {
 }
 
 .rakuten_gora {
-  color: #364e96;
+  color: #FA5858;
   background-color: white;
-  border: solid 3px #364e96;
+  border: solid 3px #FA5858;
   padding: 0.5em;
   border-radius: 0.5em;
   margin-bottom: 20px;
 }
+
+/*1.フェードインアニメーションの指定*/
+.scrollanime {opacity: 0;} /*一瞬表示されるのを防ぐ*/
+.fadeInDown {
+    animation-name: fadeInDown;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+    }
+    100% {
+    opacity: 1;
+    transform: translate(0);
+    }
+}
+/*2.上下の動きを指定*/
+.downup {transform: translateY(100px);}
