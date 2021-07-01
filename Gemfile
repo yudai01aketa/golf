@@ -21,7 +21,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 # 楽天API取得
 gem 'rakuten_web_service'
 # 画像
-gem 'carrierwave', '1.2.2'
+gem 'carrierwave', '1.3.2'
 gem "mini_magick", '>= 4.9.4'
 # GoogleMap
 gem "gmaps4rails"
