@@ -3,10 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
-# gem 'sqlite3'
+gem 'rails', '~> 6.1.3.1'
 gem 'bootstrap-sass'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3.8'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'faker'
@@ -18,12 +17,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
-# 楽天API取得
 gem 'rakuten_web_service'
-# 画像
-gem 'carrierwave', '1.2.2'
+gem 'carrierwave', '1.3.2'
 gem "mini_magick", '>= 4.9.4'
-# GoogleMap
 gem "gmaps4rails"
 
 group :development, :test do
@@ -55,7 +51,7 @@ gem 'devise'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'ransack'
 
-group :production do # 本番環境
+group :production do
   gem 'pg'
   gem 'fog', '1.42'
   gem 'unicorn', '5.4.1'
