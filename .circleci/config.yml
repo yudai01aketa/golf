@@ -6,19 +6,17 @@ jobs:
         - image: circleci/ruby:2.6.3-node
           environment:
             #自身の登録しているユーザに変える。
-            POSTGRES_USER: postgres
-            PGHOST: 127.0.0.1
+            MYSQL_USER: user
+            DB_HOST: 127.0.0.1
             RAILS_ENV: test
-        #使ってるデータベースとバージョンを指定する。# 「host: localhost」でアクセスできるサービスコンテナイメージ。
-        - image: circleci/postgres:9.6
+        - image: circleci/mysql:8.0.4
           environment:
-            #それぞれ設定
-            POSTGRES_USER: postgres
-            #下記を書けばパスワードなしでデータベースにログインしてくれる。
-            POSTGRES_HOST_AUTH_METHOD: trust
-            POSTGRES_DB: portfolio_test
+            MYSQL_ROOT_PASSWORD: rootpw
+            MYSQL_DATABASE: test_db
+            MYSQL_USER: user
+            MYSQL_PASSWORD: trust
       #自身のアプリ名にする
-      working_directory: ~/Portfolio
+      working_directory: ~/golf_app
       steps:
         - checkout
         #bundle キャッシュをリストアする。公式の設定通り。
@@ -26,7 +24,6 @@ jobs:
             keys:
               - v1-dependencies-{{ checksum "Gemfile.lock" }}
               - v1-dependencies-
-        # bundle install で依存関係をインストールする。公式の設定と多少異なってます。
         - run:
             name: install dependencies
             command: |
@@ -38,10 +35,9 @@ jobs:
             paths:
               - ./vendor/bundle
 
-        #↓追加する
         - run:
             name: DBの起動を待つ
-            command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
+            command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
         - run: bundle exec rake db:create
         - run: bundle exec rake db:schema:load
