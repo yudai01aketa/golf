@@ -1,11 +1,11 @@
 if Rails.env.production?
   CarrierWave.configure do |config|
     config.fog_credentials = {
-      # Amazon S3用の設定
+      # Amazon S3用の設定rai
       :provider              => 'AWS',
-      :region                => ENV['S3_AWS_REGION'],
-      :aws_access_key_id     => ENV['S3_AWS_ACCESS_KEY'],
-      :aws_secret_access_key => ENV['S3_AWS_SECRET_KEY']
+      :region                => 'ap-northeast-1',
+      :aws_access_key_id     => 'AKIA5HBHRLQMP2ELIKGS',
+      :aws_secret_access_key => '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'
     }
     config.fog_directory     =  ENV['S3_AWS_BUCKET']
   end
