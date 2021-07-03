@@ -5,7 +5,7 @@ RSpec.describe "ユーザー登録", type: :request do
   end
 
   it "正常なレスポンスを返すこと" do
-    expect(response).to be_success
+    expect(response).to be_successful
     expect(response).to have_http_status "200"
   end
 

@@ -43,7 +43,7 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
-    if @course.update_attributes(course_params)
+    if @course.update(course_params)
       flash[:success] = "コース情報が更新されました！"
       redirect_to @course
     else
