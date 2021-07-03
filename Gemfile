@@ -52,5 +52,6 @@ gem 'ransack'
 group :production do
   gem 'pg'
   gem 'fog', '1.42'
+  gem 'fog-aws'
   gem 'unicorn', '5.4.1'
 end
