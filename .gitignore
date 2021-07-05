@@ -36,6 +36,3 @@
 # Ignore gems
 /vendor/bundle
 /vendor/.keep
-
-# local_env
-/config/local_env.yml

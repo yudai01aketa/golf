@@ -532,6 +532,7 @@ DEPENDENCIES
   factory_bot_rails (~> 4.10.0)
   faker
   fog (= 1.42)
+  fog-aws
   gmaps4rails
   jbuilder (~> 2.5)
   jquery-rails (= 4.3.1)
