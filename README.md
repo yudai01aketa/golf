@@ -35,6 +35,6 @@
 
 # 環境
 ■フレームワーク  
-　Ruby on Rails ６.１.3.1
+　Ruby on Rails 6.1.3.1
 ■データベース  
 　PostgreSQL  
