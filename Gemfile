@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+ruby '2.6.3'
+
 gem 'rails', '~> 6.1.3.1'
 gem 'bootstrap-sass'
 gem 'puma', '~> 4.3.8'
@@ -50,7 +52,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'ransack'
 
 group :production do
-  gem 'pg'
+  gem 'mysql2'
   gem 'fog', '1.42'
   gem 'fog-aws'
   gem 'unicorn', '5.4.1'
