@@ -127,7 +127,7 @@ class User < ApplicationRecord
 
   def image_size
     if image.size > 5.megabytes
-      errors.add(:image, "：5MBより大きい画像はアップロードできません。")
+      errors.add(:image, I18n.t("errors.messages.validate_more_5mb"))
     end
   end
 end

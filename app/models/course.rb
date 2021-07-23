@@ -33,7 +33,7 @@ class Course < ApplicationRecord
 
   def picture_size
     if picture.size > 5.megabytes
-      errors.add(:picture, "：5MBより大きい画像はアップロードできません。")
+      errors.add(:picture, I18n.t("errors.messages.validate_more_5mb"))
     end
   end
 end
