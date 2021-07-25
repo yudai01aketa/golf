@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_07_04_072103) do
 
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", charset: "utf8", force: :cascade do |t|
     t.integer "course_id"
     t.integer "user_id"
     t.text "content"
@@ -22,15 +22,15 @@ ActiveRecord::Schema.define(version: 2020_07_04_072103) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "courses", force: :cascade do |t|
+  create_table "courses", charset: "utf8", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
     t.text "description"
     t.text "reference"
     t.text "memo"
     t.integer "recommend"
     t.integer "score"
     t.text "tips"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_072103) do
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
-  create_table "favorites", force: :cascade do |t|
+  create_table "favorites", charset: "utf8", force: :cascade do |t|
     t.integer "user_id"
     t.integer "course_id"
     t.datetime "created_at", null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_072103) do
     t.index ["user_id", "course_id"], name: "index_favorites_on_user_id_and_course_id", unique: true
   end
 
-  create_table "lists", force: :cascade do |t|
+  create_table "lists", charset: "utf8", force: :cascade do |t|
     t.integer "user_id"
     t.integer "course_id"
     t.integer "from_user_id"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_072103) do
     t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
-  create_table "logs", force: :cascade do |t|
+  create_table "logs", charset: "utf8", force: :cascade do |t|
     t.integer "course_id"
     t.text "content"
     t.datetime "created_at", null: false
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_072103) do
     t.index ["course_id"], name: "index_logs_on_course_id"
   end
 
-  create_table "notifications", force: :cascade do |t|
+  create_table "notifications", charset: "utf8", force: :cascade do |t|
     t.integer "user_id"
     t.integer "course_id"
     t.integer "variety"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_072103) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
-  create_table "relationships", force: :cascade do |t|
+  create_table "relationships", charset: "utf8", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
     t.datetime "created_at", null: false
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_072103) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.text "introduction"
