@@ -21,7 +21,9 @@
         <%= render 'follow_form', user: @user if logged_in? %>
       </div>
     </div>
-    <div><h3>コース (<%= @user.courses.count %>)</h3></div>
+    <div>
+      <h3>コース</h3>
+    </div>
     <div class="row">
       <% @courses.each do |course| %>
         <div class="col-lg-4 col-md-4 col-sm-6">

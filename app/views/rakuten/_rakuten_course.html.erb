@@ -1,5 +1,5 @@
-<table class="table background-style">
-    <thead>
+<table class="table rakuten-background-style">
+    <thead id="thead_rakuten_table">
         <tr>
           <th></th>
           <th>コース名</th>
@@ -7,10 +7,10 @@
           <th>評価</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="thead_rakuten_table">
       <% @courses.each_with_index do |course, index| %>
         <tr>
-          <td><%= index+1 %></td>
+          <td id="search_rakuten_id"><%= index+1 %></td>
           <td><%= link_to "#{course.golf_course_name}",course.golf_course_detail_url %></td>
           <td><%= course.address %></td>
           <td class="rate"><%= course.evaluation.to_f %></td>
