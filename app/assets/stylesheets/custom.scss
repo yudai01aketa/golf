@@ -689,12 +689,25 @@ a.list, a.unlist {
 }
 
 .rakuten_gora {
-  color: #FA5858;
+  color: #364e96;
+  padding: 0.5em 0;
+  border-top: solid 3px #364e96;
+  border-bottom: solid 3px #364e96;
   background-color: white;
-  border: solid 3px #FA5858;
-  padding: 0.5em;
-  border-radius: 0.5em;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  padding: 10px;
+}
+
+.rakuten-background-style {
+  background-color: white;
+}
+
+#thead_rakuten_table {
+  padding: 10px;
+}
+
+#search_rakuten_id {
+  text-align: center;
 }
 
 /*1.フェードインアニメーションの指定*/
