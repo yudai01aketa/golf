@@ -1,5 +1,5 @@
 # アプリケーションの概要
-ゴルフでラウンドしたコースを記録して共有できる、ゴルフコース投稿SNSサービス。 <https://golf-app-gora.herokuapp.com/>
+ゴルフでラウンドしたコースを記録して共有できる、ゴルフコース投稿SNSサービス。 <http://app.enjoy-golf-app.com/>
 
 # 技術的ポイント
 ・**RSpec**でModel, Request, Systemテスト記述（約180examples）  
@@ -35,6 +35,6 @@
 
 # 環境
 ■フレームワーク  
-　Ruby on Rails 5.2.4
+　Ruby on Rails 6.1.3.1
 ■データベース  
-　PostgreSQL  
+　MySQL
