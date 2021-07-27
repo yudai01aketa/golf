@@ -9,6 +9,7 @@ class User < ApplicationRecord
                                    foreign_key: "followed_id",
                                    dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :following_courses, through: :following, source: :courses
   has_many :favorites, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :lists, dependent: :destroy
@@ -61,6 +62,7 @@ class User < ApplicationRecord
 
   # フィード一覧を取得
   def feed
+    self.following_courses.or_user_of(self) 
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
     Course.where("user_id IN (#{following_ids})
@@ -79,12 +81,12 @@ class User < ApplicationRecord
 
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
-    following.include?(other_user)
+    following.exist?(other_user)
   end
 
   # 現在のユーザーがフォローされていたらtrueを返す
   def followed_by?(other_user)
-    followers.include?(other_user)
+    followers.exist?(other_user)
   end
 
   # コースをお気に入りに登録する
