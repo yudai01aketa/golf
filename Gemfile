@@ -5,7 +5,7 @@ ruby '2.6.3'
 
 gem 'rails', '~> 6.1.3.1'
 gem 'bootstrap-sass'
-gem 'puma', '~> 4.3.8'
+gem 'puma', '~> 4.3.12'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'faker'
